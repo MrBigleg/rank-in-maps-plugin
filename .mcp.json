@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "rank-in-maps": {
+      "type": "http",
+      "url": "https://chatty-trout-855.convex.site/mcp"
+    }
+  }
+}

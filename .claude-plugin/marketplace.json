@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "rank-in-maps",
+  "owner": {
+    "name": "CTB Digital Marketing",
+    "url": "https://rank-in-maps.com"
+  },
+  "metadata": {
+    "description": "Rank-in-Maps: local SEO knowledge and Second Brain tools for AI agents"
+  },
+  "plugins": [
+    {
+      "name": "rank-in-maps",
+      "source": "./",
+      "description": "Connect your AI agent to Rank-in-Maps: local SEO knowledge tools for everyone, plus Second Brain and GBP workflow tools for Business MCP members."
+    }
+  ]
+}
