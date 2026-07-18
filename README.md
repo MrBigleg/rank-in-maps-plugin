@@ -26,9 +26,28 @@ and try `/rank-in-maps:start`.
 | `readDocsPage` | Read any knowledge page, including the Second Brain playbook |
 
 **Business MCP members** ([pricing](https://rank-in-maps.com/pricing)) get
-seven additional tools scoped to their own business: `getMyBusiness`,
-`createSecondBrain`, `writeEvidence`, `appendAuditResult`,
-`storeGeneratedContent`, `readEntities`, `readRecentActions`.
+eleven additional tools scoped to their own business.
+
+*Setup & discovery — your agent can complete first-time setup itself:*
+
+| Tool | What it does |
+| --- | --- |
+| `getMyBusiness` | Your business + the `locationId` other tools need |
+| `findMyBusiness` | Search Google Places for your business by name + area |
+| `connectMyBusiness` | Connect the confirmed match to your account |
+| `getDiscoveryInterview` | The nine-section discovery interview script |
+| `saveDiscoveryAnswers` | Save answers; finishing triggers your first audit |
+
+*Second Brain workflow:*
+
+| Tool | What it does |
+| --- | --- |
+| `createSecondBrain` | Opt in; bootstrap the knowledge vault |
+| `writeEvidence` | Record customer reviews (low stars get SLA action items) |
+| `appendAuditResult` | Append audit summaries to the history |
+| `storeGeneratedContent` | Save content drafts |
+| `readEntities` | Read structured business facts |
+| `readRecentActions` | Read open action items with SLA due dates |
 
 > After upgrading, reconnect the server (`/mcp`) — tool lists are fixed at
 > connection time, so new tools appear only on a fresh connection.

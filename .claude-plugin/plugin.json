@@ -1,7 +1,7 @@
 {
   "name": "rank-in-maps",
-  "version": "0.1.0",
-  "description": "Connect your AI agent to Rank-in-Maps: local SEO knowledge tools for everyone, plus Second Brain and GBP workflow tools for Business MCP members. Sign-in happens in your browser via OAuth — no API keys.",
+  "version": "0.2.0",
+  "description": "Connect your AI agent to Rank-in-Maps: local SEO knowledge tools for everyone; Business MCP members add agent-native business setup (find, connect, discovery interview) and the Second Brain workflow tools. Sign-in happens in your browser via OAuth \u2014 no API keys.",
   "author": {
     "name": "CTB Digital Marketing",
     "url": "https://rank-in-maps.com"

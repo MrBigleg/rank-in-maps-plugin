@@ -12,7 +12,7 @@
     {
       "name": "rank-in-maps",
       "source": "./",
-      "description": "Connect your AI agent to Rank-in-Maps: local SEO knowledge tools for everyone, plus Second Brain and GBP workflow tools for Business MCP members."
+      "description": "Connect your AI agent to Rank-in-Maps: local SEO knowledge tools for everyone; Business MCP members add agent-native business setup and Second Brain workflow tools."
     }
   ]
 }
