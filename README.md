@@ -134,6 +134,15 @@ node --experimental-strip-types scripts/validate-contract.mjs
 Pass an explicit path to `packages/agent-tool-contract/src/names.ts` when the
 application checkout is elsewhere.
 
+## Privacy & support
+
+- [Privacy policy](https://rank-in-maps.com/privacy) — how Rank-in-Maps
+  handles account and business data. As noted above, raw conversation and
+  memory from your agent are never sent to RIM.
+- [Terms of service](https://rank-in-maps.com/terms)
+- Support: [craig@ctbmarketing.com](mailto:craig@ctbmarketing.com) or open
+  an issue on this repo.
+
 ## License
 
 MIT (the plugin manifest only; Rank-in-Maps content and tools are governed
