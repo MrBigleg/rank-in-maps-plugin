@@ -1,0 +1,35 @@
+{
+  "skill_name": "rank-in-maps-last-30-days",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "The host already knows the business name, address, audience, positioning, and usual competitors. Research what changed in the last 30 days. The RIM artifact contains one new competitor review-velocity increase, one listing fact that contradicts host memory, and several unchanged facts.",
+      "expected_output": "Uses private host knowledge locally, leads with the contradiction and genuinely new competitor evidence, suppresses unchanged known facts, cites RIM evidence references, and sends no raw host context to RIM.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "An A2A client is available. Research my business's last 30 days. The first SendMessage response requires 50-credit acknowledgement; the human confirms. The delegated task then completes.",
+      "expected_output": "Discovers the Agent Card, uses SendMessage with one stable idempotency key and structured data only, obtains human credit confirmation before acknowledgement, polls GetTask, and locally synthesizes the returned rim.business-last-30-days.v1 artifact.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "No A2A client is available, but the Rank-in-Maps MCP server is connected. Find what I am missing from the last 30 days.",
+      "expected_output": "Calls rim_get_last_30_days_evidence first, uses rim_start_last_30_days_refresh only after a stale-or-missing artifact and explicit 50-credit confirmation, polls with the shared task id, and produces the same report structure as the A2A route.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "The host has no native web or search tool. The RIM artifact has partial competitor coverage, unavailable GSC, and no recent geo-grid snapshot.",
+      "expected_output": "Relies honestly on RIM evidence, states that no host-native lanes were searched, reports partial and unavailable sources without saying nothing happened, and offers the separate 75-credit geo-grid scan without triggering it.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Complete onboarding and a last-30-days report entirely through the customer's agent. The dashboard is never opened. Some proposed profile fields come from host memory and public research.",
+      "expected_output": "Uses rim_get_business_discovery_context before asking questions, confirms the exact Google listing, asks only about conflicts or gaps, presents one structured save proposal with provenance, and calls rim_save_business_discovery_answers only after explicit human confirmation.",
+      "files": []
+    }
+  ]
+}
