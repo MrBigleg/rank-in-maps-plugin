@@ -6,13 +6,13 @@
     "url": "https://rank-in-maps.com"
   },
   "metadata": {
-    "description": "Rank-in-Maps: local SEO knowledge and Second Brain tools for AI agents"
+    "description": "Rank-in-Maps: local SEO evidence, MCP Apps, and Second Brain tools for AI agents"
   },
   "plugins": [
     {
       "name": "rank-in-maps",
       "source": "./",
-      "description": "Connect your AI agent to Rank-in-Maps: local SEO knowledge tools for everyone; Business MCP members add agent-native business setup and Second Brain workflow tools."
+      "description": "Connect your own AI agent to Rank-in-Maps for local SEO knowledge, agent-first onboarding, Last 30 Days evidence, MCP Apps, and Second Brain workflows."
     }
   ]
 }

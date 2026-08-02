@@ -1,0 +1,11 @@
+interface:
+  display_name: "Rank in Maps Last 30 Days"
+  short_description: "Find what changed around your business"
+  default_prompt: "Use $rank-in-maps-last-30-days to research what changed around my business in the last 30 days."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "rank-in-maps"
+      description: "Rank-in-Maps authenticated business evidence tools"
+      transport: "streamable_http"
+      url: "https://app.ctbmarketing.com/mcp"
