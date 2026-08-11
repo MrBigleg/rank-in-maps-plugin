@@ -10,7 +10,7 @@ Orient yourself with the Rank-in-Maps MCP connection, then report to the user.
    the user to run `/mcp` and complete the browser sign-in for
    `rank-in-maps`, then stop.
 2. Summarize the capability groups exposed by this connection. The dynamic
-   free launch set currently contains 15 tools, including source-cited Local
+   free launch set currently contains 19 tools, including source-cited Local
    SEO knowledge and the three UI catalog/render tools. Do not infer the
    user's paid entitlement from tool visibility alone: some hosts may cache or
    publish a static catalog.

@@ -1,7 +1,8 @@
 ---
 name: rank-in-maps-last-30-days
 description: This skill should be used when the user asks "what changed with my business," "what am I missing," "research my last 30 days," or asks about recent competitor moves, customer or review changes, or local visibility changes. It routes through Rank-in-Maps A2A when the host supports it and otherwise uses the Rank-in-Maps MCP tools to produce a cited action report.
-version: 0.3.0
+metadata:
+  version: "0.3.0"
 ---
 
 # Rank-in-Maps Last 30 Days

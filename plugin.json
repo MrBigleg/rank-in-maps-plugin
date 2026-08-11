@@ -1,7 +1,8 @@
 {
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "rank-in-maps",
   "version": "0.4.0",
-  "description": "Connect your own AI agent to Rank-in-Maps for local SEO knowledge, agent-first onboarding, Last 30 Days evidence, MCP Apps, and Second Brain tools. OAuth; no API keys.",
+  "description": "Connect AI agents to Rank-in-Maps local SEO knowledge, agent-first onboarding, Last 30 Days evidence, MCP Apps, and portable Second Brain workflows.",
   "author": {
     "name": "CTB Digital Marketing",
     "url": "https://rank-in-maps.com"
@@ -16,8 +17,6 @@
     "second-brain",
     "okf",
     "mcp",
-    "mcp-apps",
-    "a2a",
     "agent-skills"
   ]
 }
