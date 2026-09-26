@@ -128,7 +128,7 @@ before or after:
 }
 ```
 
-If the bundle contains no geo-grid data at all, return `score: null`-style
-guidance is not supported by this schema — instead return a low score with
-every finding `needs_client` and a summary that says plainly no geo-grid
-data was available for this run.
+If the bundle contains no geo-grid data at all, omit the `score` field (or
+set it to `null`), mark every geo-grid finding `needs_client`, and state
+plainly in the executive summary that no geo-grid observations were available
+in this bundle.
