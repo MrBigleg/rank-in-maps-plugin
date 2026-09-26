@@ -1,0 +1,37 @@
+{
+  "name": "rank-in-maps",
+  "version": "0.5.0",
+  "description": "Portable Rank-in-Maps skills and MCP access for evidence-grounded local SEO workflows.",
+  "author": {
+    "name": "Rank-in-Maps",
+    "url": "https://www.rank-in-maps.com"
+  },
+  "homepage": "https://www.rank-in-maps.com",
+  "repository": "https://github.com/MrBigleg/rank-in-maps-plugin",
+  "mcpServers": {
+    "rank-in-maps": {
+      "type": "http",
+      "url": "https://app.ctbmarketing.com/mcp"
+    }
+  },
+  "interface": {
+    "displayName": "Rank-in-Maps",
+    "shortDescription": "Local SEO evidence and your next useful action",
+    "longDescription": "Connect your business, inspect saved audit evidence, and build a portable Second Brain with your own AI. Browser sign-in, explicit permissions, and approval before paid work or external changes.",
+    "developerName": "CTB Digital Marketing",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://www.rank-in-maps.com",
+    "privacyPolicyURL": "https://www.rank-in-maps.com/privacy",
+    "termsOfServiceURL": "https://www.rank-in-maps.com/terms",
+    "defaultPrompt": [
+      "Start with Rank-in-Maps and show my next useful step.",
+      "Explain my saved audit and the three most useful fixes.",
+      "Help me build my business Second Brain from confirmed facts."
+    ],
+    "brandColor": "#182b49"
+  }
+}

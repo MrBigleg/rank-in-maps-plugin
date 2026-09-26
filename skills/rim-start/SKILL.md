@@ -1,6 +1,8 @@
 ---
-name: start
-description: Start with Rank-in-Maps using live connection and mission state
+name: rim-start
+description: Help a user start with Rank-in-Maps, connect their AI, check their first-business mission, or recover an incomplete setup. Use for first use and connection troubleshooting; follow live account state rather than assuming installation grants access.
+metadata:
+  version: "1.0.0"
 ---
 
 # Start with Rank-in-Maps

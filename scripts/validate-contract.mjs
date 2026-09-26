@@ -178,17 +178,15 @@ check(
   `README launch tables differ from the registry.\nExpected: ${expectedLaunchTools.join(", ")}\nActual:   ${documentedLaunchTools.join(", ")}`,
 );
 
-const documentedFreeCount = Number(
-  readme.match(/Free \(any signed-in account\): (\d+) tools/)?.[1],
-);
-check(
-  documentedFreeCount === freeTools.length,
-  `README free count is ${documentedFreeCount}; registry count is ${freeTools.length}.`,
-);
-check(
-  startCommand.includes(`free launch set currently contains ${freeTools.length} tools`),
-  `commands/start.md must derive its stated free count from the registry (${freeTools.length}).`,
-);
+check(startCommand.includes("rim_start_here"), "Start command must use the first-mission entry tool.");
+check(!/free launch set currently contains \d+/.test(startCommand), "Start command must not hard-code catalog counts.");
+const starter = await read("skills/rim-start/SKILL.md");
+validateSkill("rim-start", starter);
+check(starter.includes("rim_browser_get_mission"), "Starter must distinguish browser site tools from remote MCP.");
+const codexManifest = JSON.parse(await read(".codex-plugin/plugin.json"));
+const rootManifest = JSON.parse(portablePluginText);
+check(codexManifest.version === rootManifest.version, "Codex overlay version drifted.");
+check(JSON.stringify(codexManifest.interface) === JSON.stringify(rootManifest.extensions?.["com.openai"]?.interface), "OpenAI interface metadata drifted.");
 
 const canonicalMcpUrl = "https://app.ctbmarketing.com/mcp";
 const portablePlugin = JSON.parse(portablePluginText);
@@ -312,6 +310,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   console.log(
-    `Plugin contract validation passed: Agent Plugins 1.0.0, 2 skills, ${freeTools.length} free + ${paidTools.length} paid tools (${expectedLaunchTools.length} unique).`,
+    `Plugin contract validation passed: Agent Plugins 1.0.0, canonical skills + Last 30 Days, ${freeTools.length} free + ${paidTools.length} paid tools (${expectedLaunchTools.length} unique).`,
   );
 }
