@@ -8,6 +8,12 @@
   },
   "homepage": "https://www.rank-in-maps.com",
   "repository": "https://github.com/MrBigleg/rank-in-maps-plugin",
+  "mcpServers": {
+    "rank-in-maps": {
+      "type": "http",
+      "url": "https://app.ctbmarketing.com/mcp"
+    }
+  },
   "interface": {
     "displayName": "Rank-in-Maps",
     "shortDescription": "Local SEO evidence and your next useful action",
