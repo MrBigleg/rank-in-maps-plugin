@@ -9,6 +9,44 @@ Agent Plugins 1.0 layout while retaining its existing Claude Code package.
 
 ## Install
 
+### Claude Code
+
+```
+/plugin marketplace add MrBigleg/rank-in-maps-plugin
+/plugin install rank-in-maps@rank-in-maps
+```
+
+Restart Claude Code (the plugin's server appears after a restart), run `/mcp`, choose
+`rank-in-maps` and complete the browser sign-in (OAuth, no API keys). Then try
+`/rank-in-maps:start` or `/rank-in-maps:last30days`.
+
+Use only one connection: do not also run `claude mcp add rank-in-maps`, or you will see the
+server twice.
+
+**Cloud or headless sessions** (Claude Code on the web, CI) cannot complete a browser sign-in.
+Create an API key at `https://www.rank-in-maps.com/dashboard/settings/ai-connections`, keep it in
+an environment variable and reference it from a project `.mcp.json`:
+
+```json
+{ "mcpServers": { "rank-in-maps": { "type": "http", "url": "https://app.ctbmarketing.com/mcp",
+  "headers": { "Authorization": "Bearer ${RIM_MCP_API_KEY}" } } } }
+```
+
+A header disables the OAuth fallback, so an expired key shows as a `401` failure. An agent that
+can run commands can instead register through the open auth.md flow (a person confirms one code):
+`https://www.rank-in-maps.com/auth.md`.
+
+The standalone skills can also be installed in Codex, Cursor, Antigravity, Hermes, and other Agent
+Skills-compatible hosts:
+
+```
+npx skills add MrBigleg/rank-in-maps-plugin --skill rank-in-maps-last-30-days
+npx skills add MrBigleg/rank-in-maps-plugin --skill rim-build-second-brain
+```
+
+Gemini Spark uses its separate `rim-build-second-brain.zip` upload with a root-level `SKILL.md`; the
+portable Agent Plugin does not replace that package.
+
 ### ChatGPT / Codex
 
 A public OpenAI listing has **not** been published. For a new user today:
@@ -40,27 +78,6 @@ Import this repository through the client's supported plugin flow. The entry
 points are `plugin.json`, `mcp.json`, and `skills/`. The package contains no
 credentials. Client availability must be verified; repository presence does
 not establish a marketplace listing or successful authentication.
-
-### Claude Code
-
-```
-/plugin marketplace add MrBigleg/rank-in-maps-plugin
-/plugin install rank-in-maps@rank-in-maps
-```
-
-Then run `/mcp` and complete the browser sign-in (OAuth — no API keys),
-and try `/rank-in-maps:start` or `/rank-in-maps:last30days`.
-
-The standalone skills can also be installed in Codex, Cursor, Antigravity,
-Hermes, and other Agent Skills-compatible hosts:
-
-```
-npx skills add MrBigleg/rank-in-maps-plugin --skill rank-in-maps-last-30-days
-npx skills add MrBigleg/rank-in-maps-plugin --skill rim-build-second-brain
-```
-
-Gemini Spark uses its separate `rim-build-second-brain.zip` upload with a
-root-level `SKILL.md`; the portable Agent Plugin does not replace that package.
 
 ## What you get
 
