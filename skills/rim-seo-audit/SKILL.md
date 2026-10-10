@@ -92,6 +92,11 @@ Evaluate every rule. Each gets exactly one status:
 Weights: **critical 10 · high 5 · medium 3 · low 1**. Use the rule's default
 priority unless the evidence clearly justifies a change (say why if so).
 
+Catalogue version: `1` — report this as `catalogueVersion` in step 7. Bump
+it only when a rule id or weight in this section changes, so the dashboard
+and Second Brain only show a score delta between two runs scored with the
+same catalogue.
+
 #### Technical (`category: "technical"`)
 
 | ruleId | Check | Default priority | Google reference |
@@ -229,6 +234,8 @@ Call `rim_record_audit_result` with:
   ```
 
 - `skillSlug: "rim-seo-audit"`
+- `catalogueVersion: "1"` — the version stated in step 3, so this run is
+  only compared against earlier runs scored with the same catalogue
 - `skillRunId: "<locationId>:<YYYY-MM-DD>"` — reuse it if the user asks to
   redo or continue the same audit
 - `declaredToolNames` — every `rim_` tool you actually called this run

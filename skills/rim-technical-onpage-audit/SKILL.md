@@ -1,28 +1,23 @@
 ---
 name: rim-technical-onpage-audit
 description: >
-  Score a business's technical + on-page SEO from a single supplied context
-  bundle (business data + one page of extracted site text) — no crawling,
-  no subagents, no file writes. Use for the dashboard's single-shot External
-  Skills Runner, not for an agent with its own browsing tools (use
+  Score a business's technical + on-page SEO from a single supplied context bundle (business data +
+  one page of extracted site text) — no crawling, no subagents, no file writes. Use for the
+  dashboard's single-shot External Skills Runner, not for an agent with its own browsing tools (use
   rim-seo-audit for that case instead).
 metadata:
-  version: "0.1.0"
-  forkedFrom:
-    repo: "AgriciDaniel/claude-seo"
-    path: "skills/seo-audit/SKILL.md"
-    revision: "09d37c7b66ed3ca9c6efbdb765a805a6c76a8f01"
-    license: "MIT"
-    forkedAt: "2026-08-22"
-    forkReason: >
-      The original assumes an agentic environment with a CLI
-      (render_page.py, google_report.py, ...), up to 15 subagent
-      delegations, a 500-page crawl, and filesystem writes for report
-      artifacts. None of that is available to a single generateText() call
-      over a capped context bundle. This fork keeps the scoring rubric,
-      report structure, priority definitions, and error-handling discipline
-      from the original and drops everything that assumes tools this
-      executor doesn't have.
+  version: 0.1.0
+  forkedFrom.repo: AgriciDaniel/claude-seo
+  forkedFrom.path: skills/seo-audit/SKILL.md
+  forkedFrom.revision: 09d37c7b66ed3ca9c6efbdb765a805a6c76a8f01
+  forkedFrom.license: MIT
+  forkedFrom.forkedAt: '2026-08-22'
+  forkedFrom.forkReason: >
+    The original assumes an agentic environment with a CLI (render_page.py, google_report.py, ...),
+    up to 15 subagent delegations, a 500-page crawl, and filesystem writes for report artifacts.
+    None of that is available to a single generateText() call over a capped context bundle. This
+    fork keeps the scoring rubric, report structure, priority definitions, and error-handling
+    discipline from the original and drops everything that assumes tools this executor doesn't have.
 ---
 
 # Technical + On-Page SEO Audit (bundle-fed, single pass)

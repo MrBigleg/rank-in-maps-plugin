@@ -1,27 +1,23 @@
 ---
 name: rim-geogrid-interpretation
 description: >
-  Interpret already-collected geo-grid ranking data (ARP/ATRP/SoLV, grid
-  points) from a single supplied context bundle — you do not run scans
-  yourself, RIM supplies stored observations. Use for the dashboard's
-  single-shot External Skills Runner.
+  Interpret already-collected geo-grid ranking data (ARP/ATRP/SoLV, grid points) from a single
+  supplied context bundle — you do not run scans yourself, RIM supplies stored observations. Use for
+  the dashboard's single-shot External Skills Runner.
 metadata:
-  version: "0.1.0"
-  forkedFrom:
-    repo: "garrettjsmith/localseoskills"
-    path: "skills/geogrid-analysis/SKILL.md"
-    revision: "5568713ea22636a561143ae290107e7b894af7e5"
-    license: "MIT"
-    forkedAt: "2026-08-22"
-    forkReason: >
-      Minimal fork — the original is already an interpretation-only skill
-      over pre-run scan data, which matches the bundle-fed executor almost
-      exactly. Only the "Default data tool" preamble and "Tools for This
-      Skill" footer (which describe running a NEW scan) are removed, since
-      the executor never triggers a new paid scan. Cross-references to
-      sibling skills in the original suite (local-seo-audit,
-      local-competitor-analysis, etc.) are replaced with plain prose
-      recommendations, since those skills don't exist in this catalogue.
+  version: 0.1.0
+  forkedFrom.repo: garrettjsmith/localseoskills
+  forkedFrom.path: skills/geogrid-analysis/SKILL.md
+  forkedFrom.revision: 5568713ea22636a561143ae290107e7b894af7e5
+  forkedFrom.license: MIT
+  forkedFrom.forkedAt: '2026-08-22'
+  forkedFrom.forkReason: >
+    Minimal fork — the original is already an interpretation-only skill over pre-run scan data,
+    which matches the bundle-fed executor almost exactly. Only the "Default data tool" preamble and
+    "Tools for This Skill" footer (which describe running a NEW scan) are removed, since the
+    executor never triggers a new paid scan. Cross-references to sibling skills in the original
+    suite (local-seo-audit, local-competitor-analysis, etc.) are replaced with plain prose
+    recommendations, since those skills don't exist in this catalogue.
 ---
 
 # Geo-Grid Ranking Interpretation (bundle-fed, single pass)

@@ -8,7 +8,7 @@ const generated = path.join(app, 'packages/agent-tool-contract/dist/agent-plugin
 const { RIM_MCP_FREE_TOOL_NAMES: free, RIM_MCP_PAID_TOOL_NAMES: paid } = await import(pathToFileURL(path.join(app, 'packages/agent-tool-contract/src/names.ts')));
 const { getToolDefinition } = await import(pathToFileURL(path.join(app, 'packages/agent-tool-contract/src/registry.ts')));
 // Keep the plugin-owned Last 30 Days workflow. Sync only canonical app files.
-for (const name of ['plugin.json', 'mcp.json', '.codex-plugin', 'skills']) {
+for (const name of ['plugin.json', 'mcp.json', '.agents', '.codex-plugin', 'skills']) {
   await cp(path.join(generated, name), path.join(root, name), { recursive: true });
 }
 const manifest = JSON.parse(await readFile(path.join(root, 'plugin.json'), 'utf8'));
