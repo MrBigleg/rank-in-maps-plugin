@@ -1,4 +1,5 @@
 import { readdir, readFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { pathToFileURL } from "node:url";
@@ -186,6 +187,19 @@ check(starter.includes("rim_browser_get_mission"), "Starter must distinguish bro
 const codexManifest = JSON.parse(await read(".codex-plugin/plugin.json"));
 const rootManifest = JSON.parse(portablePluginText);
 check(codexManifest.version === rootManifest.version, "Codex overlay version drifted.");
+const codexMarketplace = JSON.parse(await read(".agents/plugins/marketplace.json"));
+const codexEntry = codexMarketplace.plugins?.find(entry => entry.name === rootManifest.name);
+check(codexMarketplace.name === "rank-in-maps", "Codex marketplace identity drifted.");
+check(codexEntry?.source?.source === "local" && codexEntry.source.path === "./", "Codex marketplace must resolve the root plugin.");
+check(codexEntry?.policy?.installation === "AVAILABLE" && codexEntry.policy.authentication === "ON_INSTALL", "Codex install/auth policy drifted.");
+check(rootManifest.extensions?.["com.openai"]?.onboardingSkill === "./skills/rim-start/SKILL.md", "OpenAI setup must invoke the packaged starter.");
+check(rootManifest.extensions?.["com.nousresearch.hermes"]?.servers?.["rank-in-maps"]?.trust === "untrusted", "Hermes must retain approval for write-capable calls.");
+check(!existsSync(path.join(pluginRoot, "plugin.yaml")) && !existsSync(path.join(pluginRoot, "plugin.yml")), "Hermes native YAML would shadow portable discovery.");
+const { buildAgentPluginFiles } = await import(pathToFileURL(path.join(applicationRoot, "packages/agent-tool-contract/scripts/emit-agent-plugin.mjs")).href);
+for (const [relative, expected] of buildAgentPluginFiles()) {
+  if (!relative.startsWith("skills/")) continue;
+  check(await read(relative) === expected, `Portable skill drifted from the validated app package: ${relative}`);
+}
 check(JSON.stringify(codexManifest.interface) === JSON.stringify(rootManifest.extensions?.["com.openai"]?.interface), "OpenAI interface metadata drifted.");
 
 const canonicalMcpUrl = "https://app.ctbmarketing.com/mcp";

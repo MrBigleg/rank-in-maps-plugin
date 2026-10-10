@@ -47,6 +47,41 @@ npx skills add MrBigleg/rank-in-maps-plugin --skill rim-build-second-brain
 Gemini Spark uses its separate `rim-build-second-brain.zip` upload with a root-level `SKILL.md`; the
 portable Agent Plugin does not replace that package.
 
+### Hermes Agent
+
+```sh
+hermes plugins install MrBigleg/rank-in-maps-plugin --no-enable
+hermes plugins list
+hermes plugins enable rank-in-maps
+```
+
+Restart Hermes and complete browser sign-in if offered. Ask **Start with Rank-in-Maps**.
+Use `skills_list` to find the fully qualified `rim-start` skill: portable skill names
+are namespaced by Hermes. The package uses root `plugin.json`, immediate skill folders,
+and root `mcp.json` with Streamable HTTP. It requires no custom Python entrypoint.
+
+If sign-in does not start, add or update the same-named server in your active
+`config.yaml`, then run `hermes mcp login rank-in-maps` from a fresh terminal:
+
+```yaml
+mcp_servers:
+  rank-in-maps:
+    url: "https://app.ctbmarketing.com/mcp"
+    auth: oauth
+    trust: untrusted
+```
+
+A config entry overrides the portable package's server. Keep one connection; do not
+configure a second alias. The Hermes extension requests `trust: untrusted`, so calls
+without `readOnlyHint: true` require host approval and fail closed when nobody can
+approve. RIM's tool annotation review is still open, so even reads may ask for approval.
+Credentials belong to the host, never this repository or a chat message.
+
+No Hermes catalogue listing or authenticated Hermes acceptance is claimed.
+The package deliberately omits `plugin.yaml`: current Hermes gives it priority
+over portable `plugin.json` and then expects Python code. See the
+[Hermes plugin guide](https://hermes-agent.nousresearch.com/docs/developer-guide/plugins).
+
 ### ChatGPT / Codex
 
 A public OpenAI listing has **not** been published. For a new user today:
@@ -64,9 +99,21 @@ A public OpenAI listing has **not** been published. For a new user today:
 
 3. Start a new session if the client needs to refresh its tools, then ask
    **Start with Rank-in-Maps**. A successful `rim_start_here` call verifies access.
-4. For local plugin testing in Codex, use a client-supported marketplace or plugin
-   import with this checkout. The portable root manifests and OpenAI metadata are
-   provided; importing workflows is separate from OAuth and paid entitlement.
+4. For local plugin testing, clone this repository and open it as your Codex project:
+
+   ```sh
+   git clone https://github.com/MrBigleg/rank-in-maps-plugin.git
+   cd rank-in-maps-plugin
+   codex
+   ```
+
+   Open `/plugins`, choose the Rank-in-Maps repository marketplace, install, and
+   complete sign-in. Start a new session and run setup. In the desktop app, open
+   the checkout as your project and refresh the plugin browser. The checked-in
+   `.agents/plugins/marketplace.json` points at the root package; OpenAI's
+   `onboardingSkill` points at the shipped `rim-start` skill. Availability varies
+   by local client; use the MCP commands above when it is unavailable. Do not use
+   the manual connection and plugin connection together.
    See the [official packaging guide](https://developers.openai.com/plugins/build/plugins).
 
 Do not add both a manual MCP connection and the plugin's copy of the same server.
@@ -94,7 +141,7 @@ permissions, feature flags and quotas; this table is not an entitlement assertio
 
 | Tool | What it does |
 | --- | --- |
-| `rim_start_here` | Call this first, and again whenever you want to check progress. Returns the user's account state (tier, connected businesses), the mission to run next as ordered steps with the exact tools and the points where you must confirm with the user, live progress on that mission (business research, first audit, top fixes), and the current Rank-in-Maps skills with versions. Pick `goal` from what the user wants; omit it to get the recommended first mission. Free, read-only, safe to repeat. |
+| `rim_start_here` | Call this first, and again whenever you want to check progress. Returns the user's account state (tier, connected businesses), the mission to run next as ordered steps with the exact tools and the points where you must confirm with the user, live progress on that mission (business research, first audit, top fixes), and the current Rank-in-Maps skills with versions. Pick `goal` from what the user wants; omit it to get the recommended first mission. If the account has more than one business, pass `locationId` (from rim_list_businesses or rim_connect_business) for the one you are working on: progress is reported for that business only, and without it you are asked to choose rather than given a guess. Free, read-only, safe to repeat. |
 | `rim_assess_gbp_description` | Check the current live Google Business Profile business description before drafting anything. Use this first when the user asks to fix, review, or rewrite the GBP description. This tool also updates the related checklist items when the live description is already good. |
 | `rim_list_pending_approvals` | Get the bounded set of staged actions currently waiting for human approval. |
 | `rim_get_gbp_audit` | Get the latest GBP optimization audit with score, section counts, and open findings. Use when the user asks about audit details, optimization findings, score breakdown, or what needs fixing. |
@@ -115,6 +162,8 @@ permissions, feature flags and quotas; this table is not an entitlement assertio
 | `rim_list_businesses` | List every business (Rank-in-Maps location) the signed-in user owns, grouped by project. Call this first when the account may have more than one business — rim_get_connected_business only ever resolves a single location and cannot enumerate the rest. Each entry includes the locationId the other tools need. |
 | `rim_search_business_listings` | Search Google Places for the user's business by name and area (e.g. "Blue Orchid Cafe, Chiang Mai"). Returns up to 8 candidates. Show them to the user and confirm the right one BEFORE calling rim_connect_business — never guess. |
 | `rim_connect_business` | Connect the confirmed business to the user's Rank-in-Maps account: fetches authoritative Google Places details and creates the business record (the locationId all other tools need). Call only after the user has confirmed the exact business from rim_search_business_listings results. Will not replace a different already-connected business. |
+| `rim_run_first_analysis` | Run the first analysis for a business the user has connected: Rank-in-Maps reads its Google Maps listing and public web mentions and writes a model-assessed picture (sentiment, what customers say, strengths, concerns, how the business is described). Each business gets this once in the owner's account, and a retry after a failure reuses it, so tell the user it uses the business's first analysis and get a yes first. It starts in the background and returns at once with status started; the analysis takes up to a minute. Do not call this tool again while it runs. Call rim_get_evidence_cards every few seconds, tell the user which stage firstAnalysis.stage names, and once firstAnalysis.state is completed describe the cards exactly as returned, quoting savedSummary for what is saved: the result is inferred by a model from public sources, covers only part of the evidence, and is not a score, a ranking or a measurement. |
+| `rim_get_evidence_cards` | Read the evidence cards for a connected business exactly as the onboarding screen shows them: the saved listing facts and, once run, the first analysis. Each card states its status (queued, working, needs the owner, finished, unavailable, could not finish), whether it was observed, inferred by a model, or confirmed by the owner, whether it is saved, and why anything is unavailable. Never say work is finished unless its card says so, never call an inferred card a measurement, and say plainly when a card is unavailable. |
 | `rim_create_second_brain` | Create (or re-verify) the OKF Second Brain knowledge vault for a location: opts the location in, and the debounced sync bootstraps the Drive folder tree (00_Profile…04_Notes) or a local snapshot when Drive is not connected. Idempotent. |
 | `rim_record_review_evidence` | Record a customer review in the Second Brain evidence log. Deduplicates against synced/forwarded copies; reviews of 3 stars or lower get an SLA action item (1★ red/24h, 2★ amber/48h, 3★ yellow/72h). Writes knowledge files only — never touches Google Business Profile. |
 | `rim_record_audit_result` | Append an audit summary to the Second Brain audit history (02_Insights/audit_history.md). |
@@ -155,7 +204,7 @@ feature-controlled.
 | `rim_stage_gbp_categories` | Stage a change to the business's Google Business Profile categories (one primary and up to 9 secondary) for the owner's approval. Take category ids ("gcid:...") from rim_suggest_gbp_categories or from the current profile; ids that are not in Google's category list are refused. This only proposes the change. It publishes after the owner approves it in the dashboard (/dashboard/business-info), and approval is refused if the live categories changed since drafting. Only one category draft can be pending per location: withdraw it with rim_withdraw_staged_action to replace it. Never describe the change as live until the owner has approved it. |
 | `rim_withdraw_staged_action` | Withdraw a draft staged through an MCP connection (post, description, categories, action item or evidence proposal) while it is still waiting for the owner's approval, for example to replace it with a corrected one. It cannot touch drafts the owner or the dashboard created, and it cannot approve, publish or undo anything already approved. Find ids with rim_list_pending_approvals. |
 | `rim_check_local_pack_position` | Run a single live check of this business's position in Google's local map pack for one search query, via licensed DataForSEO data. Part of the rim-seo-audit skill (skill://rim/seo-audit/SKILL.md) — call it once per audit run for the business's own primary category + city/service-area query, not speculatively; the underlying provider call is billed to Rank-in-Maps and metered to you as credits. Requires the location to have a Google Place ID and verified coordinates on file. Pass idempotencyKey and reuse the same value on retry so a network retry never re-runs (and re-charges) the check. |
-| `rim_get_connected_business` | Get the signed-in user's Rank-in-Maps business and the locationId required by the other Second Brain tools. |
+| `rim_get_connected_business` | Get the signed-in user's Rank-in-Maps business and the locationId required by the other Second Brain tools. If the account has more than one business, pass locationId (from rim_list_businesses) to choose; without it you get the list back, not a guess. |
 | `rim_get_business_discovery_context` | Preferred agent-first onboarding read. Returns the connected listing, known RIM facts, current structured answers, provenance, coverage, conflicts, and gaps. Privately combine it with what you already know, draft the full profile, then ask the human once to confirm the structured save proposal. |
 | `rim_save_business_discovery_answers` | Save the human-confirmed structured onboarding proposal for the connected business. Prefer one complete save after rim_get_business_discovery_context; partial saves remain supported for compatibility. Pass confirmedByUser and confirmedClaims for host-derived values. When complete, set markComplete: true to trigger the first automated audit. |
 | `rim_start_last_30_days_refresh` | Start or resume the shared Business Last 30 Days evidence task. A live refresh costs exactly 50 credits. Reusing the same idempotencyKey returns the original task and never creates a second charge. |

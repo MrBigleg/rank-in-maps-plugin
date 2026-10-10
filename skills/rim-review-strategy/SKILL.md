@@ -1,28 +1,24 @@
 ---
 name: rim-review-strategy
 description: >
-  Assess a business's review generation, response, and reputation strategy
-  from a single supplied context bundle (review rollup + business data).
-  No live review-monitoring tools; RIM supplies the current review counts
-  and rollups. Use for the dashboard's single-shot External Skills Runner.
+  Assess a business's review generation, response, and reputation strategy from a single supplied
+  context bundle (review rollup + business data). No live review-monitoring tools; RIM supplies the
+  current review counts and rollups. Use for the dashboard's single-shot External Skills Runner.
 metadata:
-  version: "0.1.0"
-  forkedFrom:
-    repo: "garrettjsmith/localseoskills"
-    path: "skills/review-management/SKILL.md"
-    revision: "5568713ea22636a561143ae290107e7b894af7e5"
-    license: "MIT"
-    forkedAt: "2026-08-22"
-    forkReason: >
-      Light fork — most of the original is portable domain knowledge
-      (ranking-factor explanation, ask framework, industry-specific
-      platform table, response frameworks, cadence targets, fake-review
-      handling) that needs no live tool access to apply. Removed: the
-      "Default data tool" (LocalSEOData/Whitespark) preamble, the closing
-      "Tools for This Skill" section, and cross-references to sibling
-      skills in the original suite that don't exist in this catalogue.
-      "Task-Specific Questions" reframed as bundle-lookup instructions
-      since there is no interactive back-and-forth in a single pass.
+  version: 0.1.0
+  forkedFrom.repo: garrettjsmith/localseoskills
+  forkedFrom.path: skills/review-management/SKILL.md
+  forkedFrom.revision: 5568713ea22636a561143ae290107e7b894af7e5
+  forkedFrom.license: MIT
+  forkedFrom.forkedAt: '2026-08-22'
+  forkedFrom.forkReason: >
+    Light fork — most of the original is portable domain knowledge (ranking-factor explanation, ask
+    framework, industry-specific platform table, response frameworks, cadence targets, fake-review
+    handling) that needs no live tool access to apply. Removed: the "Default data tool"
+    (LocalSEOData/Whitespark) preamble, the closing "Tools for This Skill" section, and
+    cross-references to sibling skills in the original suite that don't exist in this catalogue.
+    "Task-Specific Questions" reframed as bundle-lookup instructions since there is no interactive
+    back-and-forth in a single pass.
 ---
 
 # Review Strategy Assessment (bundle-fed, single pass)

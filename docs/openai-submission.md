@@ -1,3 +1,7 @@
+> Update 2026-10-10: package 0.6.0 adds local Codex marketplace discovery and
+> the packaged `rim-start` onboarding skill. See [platform launch](platform-launch.md).
+> These local changes do not establish OpenAI directory publication or OAuth acceptance.
+
 # OpenAI submission readiness — September 25, 2026
 
 Version 0.5.0 reconciles the first-mission entry skill, canonical app skills,
@@ -9,7 +13,7 @@ Use **With MCP → Universal** and `https://app.ctbmarketing.com/mcp` in the
 reviewed skills package; Claude commands have been converted into `rim-start`.
 Do not submit an existing integration ID in place of the server.
 
-The [application's submission packet](https://github.com/MrBigleg/rank-in-maps-ctbmarketing/blob/codex/browser-agent-experience/docs/connections/openai-plugin-submission.md)
+The [application's submission packet](https://github.com/MrBigleg/rank-in-maps-ctbmarketing/blob/main/docs/connections/openai-plugin-submission.md)
 contains listing copy, five positive and three negative test specifications,
 observed public endpoint checks and detailed remaining gates. Refer to the
 [official submission instructions](https://developers.openai.com/plugins/deploy/submission)

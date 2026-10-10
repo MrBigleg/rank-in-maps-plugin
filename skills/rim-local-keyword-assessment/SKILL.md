@@ -1,34 +1,30 @@
 ---
 name: rim-local-keyword-assessment
 description: >
-  Assess local keyword coverage and opportunity from a single supplied
-  context bundle (business services/area + one page of site text, plus
-  any real search-performance data RIM supplies). No live keyword-volume
-  tools; unverifiable volume/difficulty numbers are flagged, not invented.
-  Use for the dashboard's single-shot External Skills Runner.
+  Assess local keyword coverage and opportunity from a single supplied context bundle (business
+  services/area + one page of site text, plus any real search-performance data RIM supplies,
+  including measured local keyword research when the business has a run). No live keyword-volume
+  tools; unverifiable volume/difficulty numbers are flagged, not invented. Use for the dashboard's
+  single-shot External Skills Runner.
 metadata:
-  version: "0.1.0"
-  forkedFrom:
-    repo: "garrettjsmith/localseoskills"
-    path: "skills/local-keyword-research.md"
-    revision: "5568713ea22636a561143ae290107e7b894af7e5"
-    license: "MIT"
-    forkedAt: "2026-08-22"
-    forkReason: >
-      Medium fork — the conceptual framework (local keyword categories,
-      implicit-vs-explicit intent, SERP-layout table, intent
-      classification, page-mapping rules) is genuinely portable and needs
-      no live tools. The tool-dependent process steps (pulling live
-      volume/difficulty from Semrush/Ahrefs/DataForSEO, scraping
-      competitor SERPs) are removed — this fork assesses coverage and
-      opportunity conceptually from the bundle rather than producing a
-      numeric keyword map. NOTE: RIM already has real Search Console
-      performance data (gscPerformanceCache) that this skill's own
-      "Volume Data is Unreliable for Local" section names as the correct
-      ground truth over tool estimates — if that data is included in a
-      future context bundle, this skill should use it directly instead of
-      treating all volume as needs_client. Flagged in the eval findings
-      doc as a bundle-extension opportunity, not done in this fork.
+  version: 0.2.0
+  forkedFrom.repo: garrettjsmith/localseoskills
+  forkedFrom.path: skills/local-keyword-research.md
+  forkedFrom.revision: 5568713ea22636a561143ae290107e7b894af7e5
+  forkedFrom.license: MIT
+  forkedFrom.forkedAt: '2026-08-22'
+  forkedFrom.forkReason: >
+    Medium fork — the conceptual framework (local keyword categories, implicit-vs-explicit intent,
+    SERP-layout table, intent classification, page-mapping rules) is genuinely portable and needs no
+    live tools. The tool-dependent process steps (pulling live volume/difficulty from
+    Semrush/Ahrefs/DataForSEO, scraping competitor SERPs) are removed — this fork assesses coverage
+    and opportunity conceptually from the bundle rather than producing a numeric keyword map. NOTE:
+    RIM already has real Search Console performance data (gscPerformanceCache) that this skill's own
+    "Volume Data is Unreliable for Local" section names as the correct ground truth over tool
+    estimates. As of v0.2.0 (2026-09-30) the bundle can also carry measured local keyword research
+    (volume in the business's own area, national difficulty, intent and a Map Pack verdict), and
+    this skill uses it directly. Flagged in the eval findings doc as a bundle-extension opportunity;
+    done in v0.2.0.
 ---
 
 # Local Keyword Assessment (bundle-fed, single pass)
@@ -44,14 +40,41 @@ whether this is present). You have no live keyword-volume or SERP tools.
 1. **Never invent search volume, difficulty, or CPC.** If the bundle
    doesn't include real search-performance data, do not produce numeric
    estimates — assess coverage and opportunity qualitatively instead, and
-   mark volume-dependent claims `needs_client`.
+   mark volume-dependent claims `needs_client`. A number is allowed only if
+   it appears in the bundle, and it keeps the scope the bundle gives it.
 2. **If the bundle does include real search-performance data** (tracked
-   keyword positions, Search Console queries/clicks/impressions), treat
-   that as ground truth and prefer it over any qualitative guess — this
-   mirrors the original skill's own guidance that Search Console data beats
-   tool-estimated volume.
+   keyword positions, Search Console queries/clicks/impressions, or a
+   "Measured keyword research" section), treat that as ground truth and prefer
+   it over any qualitative guess — this mirrors the original skill's own
+   guidance that Search Console data beats tool-estimated volume.
 3. **Structured over prose.**
 4. **Read-only.**
+
+## Reading the "Measured keyword research" section
+
+When the bundle has this section, RIM ran keyword research for the business and
+the figures are provider data, not estimates. Read it carefully:
+
+- **Volume is for the place named on each line** (usually the business's own
+  city), and "country volume" is the same keyword country-wide. Never present a
+  country figure as local, or the reverse.
+- **Difficulty is country-wide.** `not measured` means the provider had no data;
+  it never means easy. Do not rank or recommend a keyword as easy because its
+  difficulty is missing.
+- **Small local volumes are coarse.** A `0` or `10` is "low or unmeasured", not
+  "no demand".
+- **`map pack yes`** means Google showed a Map Pack for that search, so the
+  keyword is a Maps opportunity. **`no`** means it did not; **`unchecked`** means
+  unknown. It says nothing about whether the business ranks.
+- **Navigational intent** is someone looking for a specific site or brand. A large
+  navigational volume is not an opportunity unless the brand is the business's own.
+- If the bundle has **no** such section, the business has no measured research:
+  say so, stay qualitative, and mark volume-dependent claims `needs_client`. Do
+  not suggest figures.
+
+Use it to check the site text against real demand: which high-volume, Map Pack,
+buying-intent keywords does the page fail to cover, and which of the business's
+own proven terms (Search Console impressions) does it cover well?
 
 ## How local keyword intent differs from generic keyword research
 
@@ -92,6 +115,11 @@ whether this is present). You have no live keyword-volume or SERP tools.
   keyword positions or GSC query data, use it directly — flag keywords with
   real impressions but poor position, or real clicks concentrated on very
   few queries (signals of narrow coverage).
+- **Measured keyword research, if present**: for the top keywords in the
+  "Measured keyword research" section, say whether the page's text covers them,
+  citing the keyword and its figures with their scope. A Map Pack, buying-intent
+  keyword the text doesn't cover is a `high` finding; one the text covers well
+  is a `pass`.
 
 ## SERP layout awareness (for framing recommendations, not something you can check live)
 
@@ -106,7 +134,8 @@ whether this is present). You have no live keyword-volume or SERP tools.
 - **critical**: a core named service has no dedicated coverage in the site
   text at all
 - **high**: real performance data (if present) shows meaningful demand with
-  poor coverage or poor position
+  poor coverage or poor position; or a measured Map Pack, buying-intent keyword
+  the page text doesn't cover
 - **medium**: generic language where customer-language phrasing would
   likely convert better
 - **low**: qualifier/credential coverage gaps
