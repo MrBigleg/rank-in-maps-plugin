@@ -1,3 +1,7 @@
+> Update 2026-10-26: [0.7.0 directory preparation](openai-submission-0.7.0.md)
+> records current package generation, local validation and remaining portal gates.
+> The September findings below are historical, not current acceptance receipts.
+>
 > Update 2026-10-10: package 0.6.0 adds local Codex marketplace discovery and
 > the packaged `rim-start` onboarding skill. See [platform launch](platform-launch.md).
 > These local changes do not establish OpenAI directory publication or OAuth acceptance.

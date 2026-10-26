@@ -39,7 +39,7 @@ latest templates before building. If it is not connected, this skill is
 self-sufficient — use the templates below.
 
 Tool visibility does not prove account entitlement. A client may list paid
-tools for every account even when running them would return an upgrade or
+tools for every account even when running them would return an entitlement or
 authorization response. Never infer the user's plan from the tool list and
 never test entitlement by running a paid or write tool.
 
