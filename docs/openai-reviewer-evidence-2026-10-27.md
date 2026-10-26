@@ -41,9 +41,14 @@ The canonical 0.7.1 manifest now includes the genuine five/three test
 specifications. A local walkthrough is rendered: **3:51**, H.264, **1280×720**,
 **25 fps**, **1,532,069 bytes**, SHA-256
 `f3c2323579b0649c30ec47564a24f32f87c82bac45dc7ec673eb1993a6421432`.
-Reviewer-accessible hosting remains pending. No placeholder recording URL or
-upload claim is included. The original
+Reviewer-accessible hosting remains pending. No placeholder recording URL is
+included. The original
 [0.7.1 upload record](openai-submission-0.7.1.md) and hash remain historical;
-the revised packet has not been uploaded. Review is **Not submitted** and
+the revised 0.7.1 packet was uploaded on October 27: **21 files, 279,308 bytes**,
+SHA-256 `6039225901314eb671f9481ca8251c18abc5572aa6fd1617f648723cc0f82785`.
+Only root manifest review metadata changed; every skill/asset is byte-identical.
+OpenAI marks both case sections complete and retains eight passing skills and
+Configured MCP. Supporting content is still missing its real recording URL.
+Consent for private B fixture instructions is also pending. Review is **Not submitted** and
 publication **Not published**. Owner attestations, submission, OpenAI approval
 and publication remain separate steps.
