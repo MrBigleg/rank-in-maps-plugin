@@ -7,9 +7,10 @@ files capturing facts, evidence, insights, and actions, in your own
 folders, from your own information. The repository implements the portable
 Agent Plugins 1.0 layout while retaining its existing Claude Code package.
 
-[OpenAI directory draft 0.7.1](docs/openai-submission-0.7.1.md) records
-the current package build and remaining review gates. It does not establish a
-published OpenAI listing.
+[Current OpenAI reviewer evidence](docs/openai-reviewer-evidence-2026-10-27.md)
+records eight scoped client cases and remaining review gates. The
+[original 0.7.1 upload](docs/openai-submission-0.7.1.md) remains a historical
+build checkpoint. The OpenAI listing is not published.
 
 ## Install
 
