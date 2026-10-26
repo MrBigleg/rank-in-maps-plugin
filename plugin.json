@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "rank-in-maps",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Portable Rank-in-Maps skills and MCP access for evidence-grounded local SEO workflows.",
   "author": {
     "name": "CTB Digital Marketing Co., LTD.",
@@ -20,8 +20,8 @@
       "onboardingSkill": "./skills/rim-start/SKILL.md",
       "interface": {
         "displayName": "Rank-in-Maps",
-        "shortDescription": "Local SEO evidence and actions",
-        "longDescription": "Rank-in-Maps helps local business owners use saved audits, business facts and Local SEO guidance. Connect your RIM account, choose a business you can access, inspect recorded findings and draft useful next actions. Save and read back drafts in your RIM workspace, or use packaged skills to create business files in a destination you authorize. Missing or stale evidence stays explicit. Changes to a public business profile require your approval; connecting the plugin does not publish anything. Available operations depend on your existing account permissions and entitlements.",
+        "shortDescription": "Local SEO Evidence Optimizer",
+        "longDescription": "Local SEO Evidence Optimization and actions. Rank-in-Maps helps local business owners use saved audits, business facts and Local SEO guidance. Connect your RIM account, choose a business you can access, inspect recorded findings and draft useful next actions. Save and read back drafts in your RIM workspace, or use packaged skills to create business files in a destination you authorize. Missing or stale evidence stays explicit. Changes to a public business profile require your approval; connecting the plugin does not publish anything. Available operations depend on your existing account permissions and entitlements.",
         "developerName": "CTB Digital Marketing Co., LTD.",
         "category": "Productivity",
         "capabilities": [
