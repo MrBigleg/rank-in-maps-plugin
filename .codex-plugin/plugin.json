@@ -1,9 +1,9 @@
 {
   "name": "rank-in-maps",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Portable Rank-in-Maps skills and MCP access for evidence-grounded local SEO workflows.",
   "author": {
-    "name": "Rank-in-Maps",
+    "name": "CTB Digital Marketing Co., LTD.",
     "url": "https://www.rank-in-maps.com"
   },
   "homepage": "https://www.rank-in-maps.com",
@@ -16,22 +16,25 @@
   },
   "interface": {
     "displayName": "Rank-in-Maps",
-    "shortDescription": "Local SEO evidence and your next useful action",
-    "longDescription": "Connect your business, inspect saved audit evidence, and build a portable Second Brain with your own AI. Browser sign-in, explicit permissions, and approval before paid work or external changes.",
-    "developerName": "CTB Digital Marketing",
+    "shortDescription": "Local SEO evidence and actions",
+    "longDescription": "Rank-in-Maps helps local business owners use saved audits, business facts and Local SEO guidance. Connect your RIM account, choose a business you can access, inspect recorded findings and draft useful next actions. Save and read back drafts in your RIM workspace, or use packaged skills to create business files in a destination you authorize. Missing or stale evidence stays explicit. Changes to a public business profile require your approval; connecting the plugin does not publish anything. Available operations depend on your existing account permissions and entitlements.",
+    "developerName": "CTB Digital Marketing Co., LTD.",
     "category": "Productivity",
     "capabilities": [
       "Read",
       "Write"
     ],
     "websiteURL": "https://www.rank-in-maps.com",
+    "supportURL": "https://www.ctbmarketing.com/contact",
     "privacyPolicyURL": "https://www.rank-in-maps.com/privacy",
     "termsOfServiceURL": "https://www.rank-in-maps.com/terms",
     "defaultPrompt": [
-      "Start with Rank-in-Maps and show my next useful step.",
-      "Explain my saved audit and the three most useful fixes.",
-      "Help me build my business Second Brain from confirmed facts."
+      "Start with Rank-in-Maps and show the next step for my account.",
+      "Explain my saved audit findings and the most useful next actions.",
+      "Read my saved business facts and show what is confirmed or still unknown."
     ],
-    "brandColor": "#182b49"
+    "brandColor": "#182b49",
+    "composerIcon": "./assets/rank-in-maps-logo.png",
+    "logo": "./assets/rank-in-maps-logo.png"
   }
 }

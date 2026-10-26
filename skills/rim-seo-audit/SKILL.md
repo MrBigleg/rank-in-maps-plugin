@@ -3,18 +3,18 @@ name: rim-seo-audit
 description: >
   Run a Local SEO + technical SEO audit for a connected Rank-in-Maps business
   using your own reasoning and browsing tools, backed by Rank-in-Maps
-  business data, evidence, and one paid live-data check. Use when the user
+  business data, evidence, and an optional paid live-data check. Use when the user
   asks you to "audit my site", "audit [location]", "check my local SEO", or
   "how's my technical SEO", on a connected Rank-in-Maps business.
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # SEO Audit (Local + Technical)
 
 You are auditing a real business's website and Google Business Profile
 presence. **You do the analysis yourself** — Rank-in-Maps supplies business
-data, evidence storage, and one paid live-data check; it does not run its own
+data, evidence storage, and an optional paid live-data check; it does not run its own
 separate audit model behind your back. If you have a more capable technical
 SEO process of your own (a dedicated skill, crawler, or real Core Web Vitals
 access), prefer it for steps 2–3, then map its results onto the rule ids in
@@ -43,7 +43,7 @@ the catalogue below so the score stays comparable between runs.
 
 - At most **8 page fetches** per run (homepage, robots.txt, sitemap.xml, plus
   up to 5 key pages). Say in the summary if you stopped at the cap.
-- Exactly **one** `rim_check_local_pack_position` call (15 credits).
+- **Optional:** at most one `rim_check_local_pack_position` call (15 credits), only after explicit user approval of the cost. Free users can skip it and continue.
 - Everything else in this skill is free.
 
 ## Step sequence
@@ -181,12 +181,12 @@ Only a **high-confidence** answer becomes `pass`/`fail`. Medium or low
 confidence → `info`, with the confidence and your reasoning in `evidence`.
 This keeps a judgement call from moving the score.
 
-### 4. Live local-pack position (the one paid check)
+### 4. Optional live local-pack position (15 credits)
 
-If `rim_check_local_pack_position` is available, call it **once** for the
+Only if the user explicitly approves the 15-credit cost and the tool is available, call it **once** for the
 primary category and city/service area, with
 `idempotencyKey: "<locationId>:<YYYY-MM-DD>:local-pack"` so a retry never
-double-charges. Record the result as `pack.position`. If the tool isn't
+double-charges. Record the result as `pack.position`. If skipped, record `needs_client` with "Optional paid check not requested". If the tool isn't
 available on this connection, or the call fails (it can return 429/503 when
 the upstream is rate-limited), record `pack.position` as `needs_client` with
 the reason — never guess a ranking, and don't retry more than once.
@@ -234,6 +234,7 @@ Call `rim_record_audit_result` with:
   ```
 
 - `skillSlug: "rim-seo-audit"`
+- `expectedReviewedRevision` — first load `rim_get_skill_instructions` for this slug and use its active reviewed revision; do not reuse an older plugin revision.
 - `catalogueVersion: "1"` — the version stated in step 3, so this run is
   only compared against earlier runs scored with the same catalogue
 - `skillRunId: "<locationId>:<YYYY-MM-DD>"` — reuse it if the user asks to
@@ -243,9 +244,7 @@ Call `rim_record_audit_result` with:
 This appends to the business's own Second Brain audit history
 (`02_Insights/audit_history.md`), attributed to you as agent-reported.
 
-Then offer to call `rim_create_action_item` for the top 3–5 `fail` findings
-by weight, so they land in the user's action queue rather than staying
-buried in the summary.
+Saved findings feed Evidence Optimisation automatically and remain agent-reported. Do not create duplicate action items. Offer a separate action item only when the owner wants to assign a specific task.
 
 ## What this skill never does
 
@@ -256,3 +255,7 @@ buried in the summary.
 - Record a `pass`/`fail` it didn't observe, or let a low-confidence judgement
   move the score.
 - Invent a score, a ranking position, or review content.
+
+## No business website
+
+If there is no website, or only a social profile, offer a free starter-site proposal through the user's own AI. Use confirmed business facts; list missing owner answers. Label it a proposal and do not fabricate a site audit score. Before follow-up work inspect available WordPress WebMCP or Next.js/Git skills and permissions. Audit, proposal, editing and publication are separate actions; obtain specific approval before edits or publishing.

@@ -196,10 +196,14 @@ check(rootManifest.extensions?.["com.openai"]?.onboardingSkill === "./skills/rim
 check(rootManifest.extensions?.["com.nousresearch.hermes"]?.servers?.["rank-in-maps"]?.trust === "untrusted", "Hermes must retain approval for write-capable calls.");
 check(!existsSync(path.join(pluginRoot, "plugin.yaml")) && !existsSync(path.join(pluginRoot, "plugin.yml")), "Hermes native YAML would shadow portable discovery.");
 const { buildAgentPluginFiles } = await import(pathToFileURL(path.join(applicationRoot, "packages/agent-tool-contract/scripts/emit-agent-plugin.mjs")).href);
+const { assertOpenAiPlugin } = await import(pathToFileURL(path.join(applicationRoot, "packages/agent-tool-contract/scripts/openai-plugin-validation.mjs")).href);
+const actualPackageFiles = new Map();
 for (const [relative, expected] of buildAgentPluginFiles()) {
-  if (!relative.startsWith("skills/")) continue;
-  check(await read(relative) === expected, `Portable skill drifted from the validated app package: ${relative}`);
+  const actual = await readFile(path.join(pluginRoot, relative));
+  actualPackageFiles.set(relative, actual);
+  check(actual.equals(Buffer.from(expected)), `Portable file drifted from the validated app package: ${relative}`);
 }
+assertOpenAiPlugin(actualPackageFiles);
 check(JSON.stringify(codexManifest.interface) === JSON.stringify(rootManifest.extensions?.["com.openai"]?.interface), "OpenAI interface metadata drifted.");
 
 const canonicalMcpUrl = "https://app.ctbmarketing.com/mcp";

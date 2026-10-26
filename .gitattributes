@@ -1,0 +1,8 @@
+# Canonical package bytes must match the application generator on every host.
+/plugin.json text eol=lf
+/mcp.json text eol=lf
+/.codex-plugin/** text eol=lf
+/.agents/** text eol=lf
+/commands/start.md text eol=lf
+/skills/rim-*/** text eol=lf
+/assets/*.png binary
