@@ -70,10 +70,10 @@
       },
       "interface": {
         "displayName": "Rank-in-Maps",
-        "shortDescription": "Local SEO Evidence Optimizer",
-        "longDescription": "Local SEO Evidence Optimization and actions. Rank-in-Maps helps local business owners use saved audits, business facts and Local SEO guidance. Connect your RIM account, choose a business you can access, inspect recorded findings and draft useful next actions. Save and read back drafts in your RIM workspace, or use packaged skills to create business files in a destination you authorize. Missing or stale evidence stays explicit. Changes to a public business profile require your approval; connecting the plugin does not publish anything. Available operations depend on your existing account permissions and entitlements.",
+        "shortDescription": "Local SEO with business memory",
+        "longDescription": "Understand your saved local SEO findings in the context of your business. Rank-in-Maps combines business facts, audit evidence and an OKF (Open Knowledge Format) Business Second Brain to help your AI choose a useful next step, prepare drafts and retain working knowledge. Packaged skills can create readable business files when your AI has access to your chosen folder. You control approval of supported updates. Connected actions depend on your existing permissions and services.",
         "developerName": "CTB Digital Marketing Co., LTD.",
-        "category": "Productivity",
+        "category": "Business & Operations",
         "capabilities": [
           "Read",
           "Write"
