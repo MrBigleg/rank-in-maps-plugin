@@ -1,5 +1,7 @@
 # OpenAI reviewer evidence — 2026-10-27
 
+> Update 2026-10-29: the selected D copy, later r3 baseline and new local archive are recorded in [description-d-2026-10-29.md](description-d-2026-10-29.md). Older listing/upload statements below are historical; the D replacement has not been uploaded.
+
 Five positive and three negative saved-data/view cases passed within scope on
 October 26–27 Bangkok time using Codex CLI **0.164.0**, ordinary reviewer OAuth
 and the production RIM MCP endpoint. The [sanitized actual-call evidence](openai-reviewer-cases-2026-10-27.json)
