@@ -128,10 +128,10 @@ const [
   read(".claude-plugin/marketplace.json"),
   read("plugin.json"),
   read("mcp.json"),
-  read("skills/rank-in-maps-last-30-days/SKILL.md"),
-  read("skills/rim-build-second-brain/SKILL.md"),
-  read("skills/rank-in-maps-last-30-days/agents/openai.yaml"),
-  read("skills/rank-in-maps-last-30-days/evals/evals.json"),
+  read("library/rank-in-maps-last-30-days/SKILL.md"),
+  read("library/rim-build-second-brain/SKILL.md"),
+  read("library/rank-in-maps-last-30-days/agents/openai.yaml"),
+  read("library/rank-in-maps-last-30-days/evals/evals.json"),
 ]);
 
 for (const [name, text] of [
@@ -140,7 +140,7 @@ for (const [name, text] of [
   [".claude-plugin/marketplace.json", marketplaceText],
   ["plugin.json", portablePluginText],
   ["mcp.json", portableMcpText],
-  ["skills/rank-in-maps-last-30-days/evals/evals.json", evalsText],
+  ["library/rank-in-maps-last-30-days/evals/evals.json", evalsText],
 ]) {
   try {
     JSON.parse(text);
@@ -303,7 +303,7 @@ validateSkill("rank-in-maps-last-30-days", skillText);
 validateSkill("rim-build-second-brain", secondBrainSkillText);
 
 const canonicalSkillRoot = path.join(applicationRoot, "skills", "build-second-brain");
-const packagedSkillRoot = path.join(pluginRoot, "skills", "rim-build-second-brain");
+const packagedSkillRoot = path.join(pluginRoot, "library", "rim-build-second-brain");
 const [canonicalFiles, packagedFiles] = await Promise.all([
   collectRelativeFiles(canonicalSkillRoot),
   collectRelativeFiles(packagedSkillRoot),

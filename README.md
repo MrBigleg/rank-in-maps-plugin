@@ -45,8 +45,7 @@ The standalone skills can also be installed in Codex, Cursor, Antigravity, Herme
 Skills-compatible hosts:
 
 ```
-npx skills add MrBigleg/rank-in-maps-plugin --skill rank-in-maps-last-30-days
-npx skills add MrBigleg/rank-in-maps-plugin --skill rim-build-second-brain
+npx skills add MrBigleg/rank-in-maps-plugin --skill rim-start
 ```
 
 Gemini Spark uses its separate `rim-build-second-brain.zip` upload with a root-level `SKILL.md`; the
@@ -133,8 +132,9 @@ not establish a marketplace listing or successful authentication.
 
 ## What you get
 
-- `rim-start`: resume the live first-business mission, with browser/MCP distinctions.
-- Canonical RIM audit, keyword, review and geo-grid skills.
+- One indexed skill, `rim-start`: describe what you want in ordinary language.
+- A served library of audit, keyword, review, geo-grid, business memory and Last 30 Days workflows. Jev ranks and re-checks candidates, then returns at most one workflow or explicitly abstains. Permissions and human approval still apply.
+- Offline specialists live under `library/`; read `library/index.json` only when remote discovery is unavailable, then load the matching file. Reference files load individually. New workflows do not add entries to the default skill index.
 - `rank-in-maps-last-30-days`: cited recent-change and competitor evidence.
 - `rim-build-second-brain`: the portable OKF Second Brain builder and templates.
 - The Rank-in-Maps Streamable HTTP MCP server, with client-managed OAuth.
@@ -159,9 +159,9 @@ permissions, feature flags and quotas; this table is not an entitlement assertio
 | `rim_read_doc_page` | Read the full body of one Rank-in-Maps product documentation page by its bundle-relative path (as returned by rim_search_docs). Only public-tier pages are readable. |
 | `rim_search_local_seo_knowledge` | Search the public, source-cited Local SEO and Google Business Profile OKF snapshot. This is general industry knowledge, not Rank-in-Maps product documentation or tenant data; no locationId is required. |
 | `rim_read_local_seo_page` | Read one exact page from the pinned public Local SEO OKF snapshot. Paths must come from rim_search_local_seo_knowledge; private/admin/product/tenant knowledge is never included. |
-| `rim_search_skills` | Search the active Rank-in-Maps skill catalogue by keyword, category, or review tier. Results contain bounded, curated activation and provenance metadata; they do not execute skills or return external instructions. |
+| `rim_search_skills` | For a plain-language task, pass intent to get at most one Jev-verified skill's bundled instructions, or an explicit no_skill/review/unavailable result. No skill names needed. Pass query/category/tier instead for legacy metadata search. Never executes work or grants permissions; do not send conversation history or secrets. |
 | `rim_get_skill_guidance` | Get curated activation, compatibility, and source-provenance metadata for one active skill. This does not return or authorize full external instructions, scripts, credentials, or tool execution. |
-| `rim_get_skill_instructions` | Get the full instructions body (SKILL.md text) for one active, Rank-in-Maps-bundled skill, so a client that does not read MCP Resources can still follow it. Only ever returns bundled, rim-owned content — never third-party/community skill text. Returns available: false (not an error) when the skill exists but has no bundled instructions to serve this way, e.g. a community or server-executed skill. |
+| `rim_get_skill_instructions` | Read one active RIM-owned bundled skill. Defaults to SKILL.md; pass path from the returned files list to load one linked reference or template on demand. Never returns third-party/community instructions or executes work. Returns available: false when content is not bundled. |
 | `rim_get_visibility_scorecard_questions` | Get the free Visibility Scorecard question set for a business type. Conduct it as a natural conversation — interview the user one topic at a time rather than reading options out as a form, map their answers to option points, collect the setup fields, then call rim_submit_visibility_scorecard. Free for every signed-in account. |
 | `rim_submit_visibility_scorecard` | Submit completed Visibility Scorecard answers and get the scored result: tier, category breakdown, and a shareable result link. This saves the submission and the signed-in account's contact details in Rank-in-Maps' CRM, queues an email notification to the Rank-in-Maps operator, and schedules an AI summary for the result page. Explain these effects and obtain the user's confirmation before submitting. Contact details come from the signed-in account — never ask for or supply an email. This MCP submission does not subscribe the user to a newsletter or request a results email. Present the returned tier and result link; do not claim the summary is ready until it is available. |
 | `rim_list_businesses` | List every business (Rank-in-Maps location) the signed-in user owns, grouped by project. Call this first when the account may have more than one business — rim_get_connected_business only ever resolves a single location and cannot enumerate the rest. Each entry includes the locationId the other tools need. |
