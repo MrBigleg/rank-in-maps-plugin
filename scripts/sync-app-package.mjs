@@ -1,4 +1,4 @@
-import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, writeFile, rename, lstat } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
@@ -7,8 +7,22 @@ const app = path.resolve(process.env.RIM_APP_ROOT ?? path.join(root, '..', 'rank
 const generated = path.join(app, 'packages/agent-tool-contract/dist/agent-plugin');
 const { RIM_MCP_FREE_TOOL_NAMES: free, RIM_MCP_PAID_TOOL_NAMES: paid } = await import(pathToFileURL(path.join(app, 'packages/agent-tool-contract/src/names.ts')));
 const { getToolDefinition } = await import(pathToFileURL(path.join(app, 'packages/agent-tool-contract/src/registry.ts')));
-// Keep the plugin-owned Last 30 Days workflow. Sync only canonical app files.
-for (const name of ['plugin.json', 'mcp.json', '.agents', '.codex-plugin', 'skills', 'assets']) {
+const library = JSON.parse(await readFile(path.join(generated, 'library/index.json'), 'utf8'));
+// Move only named RIM workflows; preserve unrelated skills and local artifacts.
+for (const { name } of library) {
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(name)) throw new Error('Invalid library name');
+  const legacy = path.resolve(root, 'skills', name);
+  const target = path.resolve(root, 'library', name);
+  if (!legacy.startsWith(root + path.sep) || !target.startsWith(root + path.sep)) throw new Error('Invalid migration path');
+  const existing = await lstat(legacy).catch(error => { if (error.code === 'ENOENT') return null; throw error; });
+  if (!existing) continue;
+  const entryPoint = await lstat(path.join(legacy, 'SKILL.md')).catch(error => { if (error.code === 'ENOENT') return null; throw error; });
+  if (!entryPoint) continue;
+  if (existing.isSymbolicLink() || await lstat(target).then(() => true, error => { if (error.code === 'ENOENT') return false; throw error; })) throw new Error(`Review existing library path: ${name}`);
+  await mkdir(path.dirname(target), { recursive: true });
+  await rename(legacy, target);
+}
+for (const name of ['plugin.json', 'mcp.json', '.agents', '.codex-plugin', 'skills', 'library', 'assets']) {
   await cp(path.join(generated, name), path.join(root, name), { recursive: true });
 }
 const manifest = JSON.parse(await readFile(path.join(root, 'plugin.json'), 'utf8'));

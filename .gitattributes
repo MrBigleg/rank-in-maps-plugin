@@ -5,4 +5,5 @@
 /.agents/** text eol=lf
 /commands/start.md text eol=lf
 /skills/rim-*/** text eol=lf
+/library/** text eol=lf
 /assets/*.png binary

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "rim-build-second-brain",
+    "description": "Build an OKF Second Brain for a local business: a structured, AI-ready memory of the business in the user's own folders, built by the user's own agent from the user's own knowledge. Use when the user says \"build my second brain\", \"create my business memory\", \"set up OKF\", \"make my business AI-ready\", or connects the Rank-in-Maps MCP and asks what to do.\n",
+    "path": "rim-build-second-brain/SKILL.md"
+  },
+  {
+    "name": "rank-in-maps-last-30-days",
+    "description": "This skill should be used when the user asks \"what changed with my business,\" \"what am I missing,\" \"research my last 30 days,\" or asks about recent competitor moves, customer or review changes, or local visibility changes. It routes through Rank-in-Maps A2A when the host supports it and otherwise uses the Rank-in-Maps MCP tools to produce a cited action report.",
+    "path": "rank-in-maps-last-30-days/SKILL.md"
+  },
+  {
+    "name": "rim-geogrid-interpretation",
+    "description": "Interpret already-collected geo-grid ranking data (ARP/ATRP/SoLV, grid points) from a single supplied context bundle — you do not run scans yourself, RIM supplies stored observations. Use for the dashboard's single-shot External Skills Runner.\n",
+    "path": "rim-geogrid-interpretation/SKILL.md"
+  },
+  {
+    "name": "rim-local-keyword-assessment",
+    "description": "Assess local keyword coverage and opportunity from a single supplied context bundle (business services/area + one page of site text, plus any real search-performance data RIM supplies, including measured local keyword research when the business has a run). No live keyword-volume tools; unverifiable volume/difficulty numbers are flagged, not invented. Use for the dashboard's single-shot External Skills Runner.\n",
+    "path": "rim-local-keyword-assessment/SKILL.md"
+  },
+  {
+    "name": "rim-local-keyword-research",
+    "description": "Build a prioritized local keyword plan for a connected Rank-in-Maps business from its own evidence (services, Google categories, service areas, Search Console queries, tracked keywords) plus measured local search volume, difficulty, intent and Map Pack data. Never invents volume or difficulty. Use when the user asks to \"research keywords\", \"what should we rank for\", \"find keywords for [business]\", \"which keywords should we track\", or \"local keyword research\", on a connected Rank-in-Maps business.\n",
+    "path": "rim-local-keyword-research/SKILL.md"
+  },
+  {
+    "name": "rim-review-strategy",
+    "description": "Assess a business's review generation, response, and reputation strategy from a single supplied context bundle (review rollup + business data). No live review-monitoring tools; RIM supplies the current review counts and rollups. Use for the dashboard's single-shot External Skills Runner.\n",
+    "path": "rim-review-strategy/SKILL.md"
+  },
+  {
+    "name": "rim-technical-onpage-audit",
+    "description": "Score a business's technical + on-page SEO from a single supplied context bundle (business data + one page of extracted site text) — no crawling, no subagents, no file writes. Use for the dashboard's single-shot External Skills Runner, not for an agent with its own browsing tools (use rim-seo-audit for that case instead).\n",
+    "path": "rim-technical-onpage-audit/SKILL.md"
+  },
+  {
+    "name": "rim-seo-audit",
+    "description": "Run a Local SEO + technical SEO audit for a connected Rank-in-Maps business using your own reasoning and browsing tools, backed by Rank-in-Maps business data, evidence, and an optional paid live-data check. Use when the user asks you to \"audit my site\", \"audit [location]\", \"check my local SEO\", or \"how's my technical SEO\", on a connected Rank-in-Maps business.\n",
+    "path": "rim-seo-audit/SKILL.md"
+  }
+]

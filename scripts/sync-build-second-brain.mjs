@@ -8,7 +8,7 @@ const appRoot = path.resolve(
   process.env.RIM_APP_ROOT ?? process.argv[2] ?? defaultAppRoot,
 );
 const sourceRoot = path.join(appRoot, "skills", "build-second-brain");
-const targetRoot = path.join(pluginRoot, "skills", "rim-build-second-brain");
+const targetRoot = path.join(pluginRoot, "library", "rim-build-second-brain");
 
 async function collectFiles(root, relative = "") {
   let entries;
