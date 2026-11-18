@@ -1,16 +1,18 @@
 # Rank-in-Maps Agent Plugin
 
-Connects your AI agent to [Rank-in-Maps](https://rank-in-maps.com) — the
-local SEO operations platform. Your agent learns the OKF method and builds
-your business a portable **Second Brain**: a structured folder of markdown
-files capturing facts, evidence, insights, and actions, in your own
-folders, from your own information. The repository implements the portable
-Agent Plugins 1.0 layout while retaining its existing Claude Code package.
+**Local SEO with business memory.** Practice Evidence Optimization for local
+SEO with [Rank-in-Maps](https://www.rank-in-maps.com). Use saved audits and
+customer reviews to check what is accurate, spot gaps and outdated evidence,
+and prepare drafts for your approval. Keep confirmed facts and findings in an
+Open Knowledge Format (OKF) Business Second Brain so your AI can resume work
+with the business context you have saved.
 
-[Current OpenAI reviewer evidence](docs/openai-reviewer-evidence-2026-10-27.md)
-records eight scoped client cases and remaining review gates. The
-[original 0.7.1 upload](docs/openai-submission-0.7.1.md) remains a historical
-build checkpoint. The OpenAI listing is not published.
+Download the [v0.8.1 Agent Plugins ZIP](https://github.com/MrBigleg/rank-in-maps-plugin/releases/tag/v0.8.1)
+or follow the install instructions below. Start with **Start with Rank-in-Maps**.
+The package indexes one skill and loads specialist guidance on demand.
+
+The GitHub release supports manual installation in compatible clients. The
+OpenAI directory listing has its own review and publication process.
 
 ## Install
 
@@ -22,8 +24,7 @@ build checkpoint. The OpenAI listing is not published.
 ```
 
 Restart Claude Code (the plugin's server appears after a restart), run `/mcp`, choose
-`rank-in-maps` and complete the browser sign-in (OAuth, no API keys). Then try
-`/rank-in-maps:start` or `/rank-in-maps:last30days`.
+`rank-in-maps` and complete the browser sign-in (OAuth, no API keys). Then ask **Start with Rank-in-Maps**.
 
 Use only one connection: do not also run `claude mcp add rank-in-maps`, or you will see the
 server twice.
@@ -133,7 +134,7 @@ not establish a marketplace listing or successful authentication.
 ## What you get
 
 - One indexed skill, `rim-start`: describe what you want in ordinary language.
-- A served library of audit, keyword, review, geo-grid, business memory and Last 30 Days workflows. Jev ranks and re-checks candidates, then returns at most one workflow or explicitly abstains. Permissions and human approval still apply.
+- A served library of audit, keyword, review, geo-grid, business memory and Last 30 Days workflows. Agent Gabriel uses Jev to rank and check candidate workflows, then returns one recommendation, asks for clarification, or proceeds without a specialist workflow. Permissions and human approval still apply.
 - Offline specialists live under `library/`; read `library/index.json` only when remote discovery is unavailable, then load the matching file. Reference files load individually. New workflows do not add entries to the default skill index.
 - `rank-in-maps-last-30-days`: cited recent-change and competitor evidence.
 - `rim-build-second-brain`: the portable OKF Second Brain builder and templates.
