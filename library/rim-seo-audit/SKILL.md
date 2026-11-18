@@ -43,7 +43,7 @@ the catalogue below so the score stays comparable between runs.
 
 - At most **8 page fetches** per run (homepage, robots.txt, sitemap.xml, plus
   up to 5 key pages). Say in the summary if you stopped at the cap.
-- **Optional:** at most one `rim_check_local_pack_position` call (15 credits), only after explicit user approval of the cost. Free users can skip it and continue.
+- **Optional:** at most one `rim_check_local_pack_position` call (1 credit), only after explicit user approval of the cost. Free users can skip it and continue.
 - Everything else in this skill is free.
 
 ## Step sequence
@@ -181,9 +181,9 @@ Only a **high-confidence** answer becomes `pass`/`fail`. Medium or low
 confidence → `info`, with the confidence and your reasoning in `evidence`.
 This keeps a judgement call from moving the score.
 
-### 4. Optional live local-pack position (15 credits)
+### 4. Optional live local-pack position (1 credit)
 
-Only if the user explicitly approves the 15-credit cost and the tool is available, call it **once** for the
+Only if the user explicitly approves the 1-credit cost and the tool is available, call it **once** for the
 primary category and city/service area, with
 `idempotencyKey: "<locationId>:<YYYY-MM-DD>:local-pack"` so a retry never
 double-charges. Record the result as `pack.position`. If skipped, record `needs_client` with "Optional paid check not requested". If the tool isn't

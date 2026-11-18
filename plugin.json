@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "rank-in-maps",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Portable Rank-in-Maps skills and MCP access for evidence-grounded local SEO workflows.",
   "author": {
     "name": "CTB Digital Marketing Co., LTD.",
@@ -71,7 +71,7 @@
       "interface": {
         "displayName": "Rank-in-Maps",
         "shortDescription": "Local SEO with business memory",
-        "longDescription": "Understand your saved local SEO findings in the context of your business. Rank-in-Maps combines business facts, audit evidence and an OKF (Open Knowledge Format) Business Second Brain to help your AI choose a useful next step, prepare drafts and retain working knowledge. Packaged skills can create readable business files when your AI has access to your chosen folder. You control approval of supported updates. Connected actions depend on your existing permissions and services.",
+        "longDescription": "Practice Evidence Optimization for local SEO. See what your audits and reviews say about your business, check what's accurate, and spot what's missing or out of date. Keep confirmed facts and findings in your Open Knowledge Format (OKF) Business Second Brain so your AI can pick up where you left off. Prepare drafts and review supported updates before they go live.",
         "developerName": "CTB Digital Marketing Co., LTD.",
         "category": "Business & Operations",
         "capabilities": [
