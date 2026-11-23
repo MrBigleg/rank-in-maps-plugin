@@ -7,7 +7,7 @@ and prepare drafts for your approval. Keep confirmed facts and findings in an
 Open Knowledge Format (OKF) Business Second Brain so your AI can resume work
 with the business context you have saved.
 
-Download the [v0.8.1 Agent Plugins ZIP](https://github.com/MrBigleg/rank-in-maps-plugin/releases/tag/v0.8.1)
+Download the [v0.9.0 Agent Plugins ZIP](https://github.com/MrBigleg/rank-in-maps-plugin/releases/tag/v0.9.0)
 or follow the install instructions below. Start with **Start with Rank-in-Maps**.
 The package indexes one skill and loads specialist guidance on demand.
 
@@ -152,6 +152,7 @@ permissions, feature flags and quotas; this table is not an entitlement assertio
 | `rim_list_pending_approvals` | Get the bounded set of staged actions currently waiting for human approval. |
 | `rim_get_gbp_audit` | Get the latest GBP optimization audit with score, section counts, and open findings. Use when the user asks about audit details, optimization findings, score breakdown, or what needs fixing. |
 | `rim_get_gbp_performance` | Get detailed monthly performance metrics with month-over-month trends. Use when the user asks about views, calls, website clicks, directions, growth trends, or performance history. |
+| `rim_get_geo_grid` | Read the latest saved geo-grid scan for a business: its Google Maps position at each point of a grid around the location, for each scanned search term, with the businesses that outrank it. Use when the user asks where they show up on the map, how they rank across their area, or who beats them nearby. It reads a scan that was already run; it never starts a scan and costs nothing. Returns status no_scan when none exists yet (the owner can run one from Rankings in the dashboard) and scanning while one is still collecting. Positions are observations from the scan date, not live rankings. |
 | `rim_get_profile_health` | Get the Google Business Profile operational health and verification standing for a location (active, suspended, disabled, unverified, pending_verification, access_lost, or unknown), including suspension/disablement reason, status timestamp, appeal link, and Google routing ID if available. Use to check if a profile is live or affected by Google moderation before drafting edits or campaigns. |
 | `rim_suggest_gbp_categories` | Get the GBP category suggestion for this location: current vs. recommended Primary category, Secondary category add/keep/remove actions with competitor adoption percentage and GSC impression signal, and an overall category-completeness score. Use when the user asks about GBP categories, whether their category is right, or what secondary categories to add. Returns null if no suggestion has been generated for this location yet (run a Google refresh first). Check primaryDecisionStatus before presenting the Primary recommendation as actionable: "no_supported_recommendation" or "capacity_conflict" mean no real change is being proposed and the owner should review manually, not that the engine picked primaryCategory.recommended for its own sake. primaryCategory.confidence is a distribution-concentration signal, not a probability that the recommendation is correct. |
 | `rim_search_workspace_knowledge` | Search Gabriel knowledge for tenant and global guidance relevant to the current workspace. |
@@ -232,16 +233,38 @@ feature-controlled.
 | `rim_create_surface_preview` | Create a hosted, display-only preview URL for a rendered UI atom, scoped to a location you own. |
 | `rim_revoke_surface_preview` | Revoke a previously created surface preview URL before it expires. |
 
-## MCP Apps rendering
+## Interactive views in Claude (MCP Apps)
 
-On hosts that support MCP Apps, Rank-in-Maps can render host-adaptive visual
-views for GBP performance, optimisation health, priorities, open actions,
-recent activity, and Second Brain status. The server advertises and serves
-these resources automatically; the plugin needs no host-specific UI config.
+In Claude (web and desktop) and other hosts that support MCP Apps, Rank-in-Maps
+answers with interactive views right in the chat. The server serves them; the
+plugin needs no extra setup.
 
-Every enhanced tool keeps its normal text response. Hosts without MCP Apps
-support therefore receive the same usable result as before, without an iframe
-or visual card.
+![Geo-grid rank map](assets/screenshots/01-geo-grid-rank-map.png)
+
+| View | Tool | What you can do in it |
+| --- | --- | --- |
+| Google Maps rank map | `rim_get_geo_grid` | See your position across the area for each search term, tap a square to see who ranks there, and see who beats you most. Reads the latest saved scan; never starts a paid one. |
+| Profile audit | `rim_get_gbp_audit` | Score, top fixes, every finding by section, "Ask Claude to fix", CSV download. |
+| Drafts waiting for your OK | `rim_list_pending_approvals` | Before/after preview of each staged change. "Review and approve" opens it in Rank-in-Maps; ask for changes or withdraw a draft. |
+| Mission | `rim_start_here` | Where you are in setup, with "Do the next step". |
+| Visibility Scorecard | `rim_get_visibility_scorecard_questions` | Answer by tapping and score your profile in the view. |
+| Action plan, competitors, profile health, business picker, performance, priorities, open actions, activity, Second Brain | matching tools | Checklists, comparison tables, standing and appeal links, charts. |
+
+**Approval stays with you.** No view can approve or publish anything. Changes
+to Google are drafts until you press OK in the Rank-in-Maps action queue, and
+your AI cannot approve its own drafts. The views load nothing from outside
+Rank-in-Maps and open only Rank-in-Maps links.
+
+Every tool keeps its normal text response, so hosts without MCP Apps get the
+same answer without the visual card.
+
+**Commands:** `/rank-in-maps:start`, `/rank-in-maps:rank-map`,
+`/rank-in-maps:audit`, `/rank-in-maps:approvals`, `/rank-in-maps:last30days`.
+
+| | |
+| --- | --- |
+| ![Profile audit](assets/screenshots/02-gbp-audit.png) | ![Approvals](assets/screenshots/03-approvals.png) |
+| ![Mission](assets/screenshots/04-mission.png) | ![Visibility Scorecard](assets/screenshots/05-visibility-scorecard-dark.png) |
 
 > Contract 2.0.0 renamed the public tool catalog. Reconnect the server
 > (`/mcp`) after upgrading because clients cache `tools/list` at connection time.

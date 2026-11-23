@@ -1,7 +1,7 @@
 {
   "name": "rank-in-maps",
-  "version": "0.8.1",
-  "description": "Connect your own AI agent to Rank-in-Maps for local SEO knowledge, agent-first onboarding, Last 30 Days evidence, MCP Apps, and Second Brain tools. OAuth; no API keys.",
+  "version": "0.9.0",
+  "description": "Local SEO for your Google Business Profile, inside your AI: audits, Maps rank grids, review and post drafts you approve, and a Second Brain of business facts. Interactive views in Claude. OAuth; no API keys.",
   "author": {
     "name": "CTB Digital Marketing",
     "url": "https://rank-in-maps.com"
@@ -18,6 +18,11 @@
     "mcp",
     "mcp-apps",
     "a2a",
-    "agent-skills"
-  ]
+    "agent-skills",
+    "geo-grid",
+    "gbp-audit",
+    "interactive-connector"
+  ],
+  "icon": "./assets/rank-in-maps-logo.png",
+  "privacyPolicyUrl": "https://www.rank-in-maps.com/privacy"
 }

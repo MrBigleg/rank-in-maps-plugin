@@ -42,7 +42,7 @@ function table(names) {
 const readmePath = path.join(root, 'README.md');
 const readme = await readFile(readmePath, 'utf8');
 const start = readme.indexOf('**Free (any signed-in account)');
-const end = readme.indexOf('## MCP Apps rendering');
+const end = readme.indexOf('## Interactive views in Claude (MCP Apps)');
 if (start < 0 || end < start) throw new Error('Missing README catalog markers');
 const catalog = `**Free (any signed-in account)**\n\nGenerated from the application contract. Availability is determined by live account\npermissions, feature flags and quotas; this table is not an entitlement assertion.\n\n${table(free)}\n\n**Business MCP members**\n\nAdditional account-scoped capabilities. A paid plan does not grant permission to\nrun a paid refresh or publish: ask for the user's approval. Last 30 Days remains\nfeature-controlled.\n\n${table(paid)}\n\n`;
 await writeFile(readmePath, readme.slice(0, start) + catalog + readme.slice(end));
