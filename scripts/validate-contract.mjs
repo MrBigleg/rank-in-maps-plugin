@@ -151,7 +151,7 @@ for (const [name, text] of [
 
 const freeSectionStart = readme.indexOf("**Free (any signed-in account)");
 const paidSectionStart = readme.indexOf("**Business MCP members**");
-const appsSectionStart = readme.indexOf("## MCP Apps rendering");
+const appsSectionStart = readme.indexOf("## Interactive views in Claude (MCP Apps)");
 check(freeSectionStart >= 0 && paidSectionStart > freeSectionStart, "README free tool section is missing or out of order.");
 check(appsSectionStart > paidSectionStart, "README paid tool section is missing or out of order.");
 
@@ -290,8 +290,8 @@ check(
   "The Last 30 Days skill description must use third-person trigger phrasing.",
 );
 check(
-  readme.includes("## MCP Apps rendering") && readme.includes("normal text response"),
-  "README must document MCP Apps rendering and its text fallback.",
+  readme.includes("## Interactive views in Claude (MCP Apps)") && readme.includes("normal text response"),
+  "README must document the interactive views and their text fallback.",
 );
 check(
   readme.includes("When the A2A release flag is enabled")
