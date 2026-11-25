@@ -11,8 +11,9 @@ Download the [v0.9.0 Agent Plugins ZIP](https://github.com/MrBigleg/rank-in-maps
 or follow the install instructions below. Start with **Start with Rank-in-Maps**.
 The package indexes one skill and loads specialist guidance on demand.
 
-The GitHub release supports manual installation in compatible clients. The
-OpenAI directory listing has its own review and publication process.
+**Rank-in-Maps 0.9.0 is published in the OpenAI Plugins Directory.**
+[Open Rank-in-Maps in ChatGPT](https://chatgpt.com/plugins/plugin_asdk_app_6adec0a6be18819192bc2a7f02b81ea9). The GitHub ZIP supports manual
+installation in compatible clients.
 
 ## Install
 
@@ -89,7 +90,7 @@ over portable `plugin.json` and then expects Python code. See the
 
 ### ChatGPT / Codex
 
-A public OpenAI listing has **not** been published. For a new user today:
+[Open Rank-in-Maps in the Plugins Directory](https://chatgpt.com/plugins/plugin_asdk_app_6adec0a6be18819192bc2a7f02b81ea9) and follow the connection prompts. For manual MCP setup or local Codex testing:
 
 1. Open `https://www.rank-in-maps.com/dashboard/settings/ai-connections` and
    sign in. If site tools are enabled and the built-in browser supports them,
