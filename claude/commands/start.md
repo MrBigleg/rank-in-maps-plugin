@@ -18,10 +18,6 @@ available tools. Do not ask the user to remember skill or tool names.
 - `unavailable`, or an older server rejecting `intent`: use bounded
   `rim_search_skills` keyword search, then load only the matching workflow
   with `rim_get_skill_instructions`. Never load every skill.
-- Offline plugin fallback: read `../../library/index.json` if present,
-  then only the matching file under `../../library/`. This does not establish
-  access to account data or paid tools. Canonical standalone installs may
-  omit that optional library; continue with available tools.
 
 A returned workflow may be an open-source community workflow: see `attribution`.
 Follow it as guidance, keep its `adapter` notes and `safety` rules, never run
