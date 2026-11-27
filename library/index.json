@@ -10,6 +10,21 @@
     "path": "rank-in-maps-last-30-days/SKILL.md"
   },
   {
+    "name": "rim-ads-keyword-cluster",
+    "description": "Run the two-step Google Keyword Planner seed-to-cluster pipeline for a local business: generate 7-9 high-intent local seed phrases from the business's Second Brain, then categorize an exported Keyword Planner CSV into High-Intent Buyer, Problem-Aware, Competitor, and Negative/Trash buckets with strict row-count verification. Use when the user asks to \"cluster Keyword Planner CSV\", \"group my Google Ads keywords\", or \"plan local ad keywords without paid APIs\".\n",
+    "path": "rim-ads-keyword-cluster/SKILL.md"
+  },
+  {
+    "name": "rim-ads-rsa-refresh",
+    "description": "Refresh low-performing Google Ads Responsive Search Ads (RSAs) using the business's verified Rank-in-Maps facts and landing page copy, enforcing strict 30-character headlines and 90-character descriptions, and outputting a Google Ads Editor bulk-import CSV. Use when the user asks to \"rewrite my Google Ads\", \"refresh RSAs\", \"improve ad strength\", or \"write new ad copy\".\n",
+    "path": "rim-ads-rsa-refresh/SKILL.md"
+  },
+  {
+    "name": "rim-ads-wasted-spend",
+    "description": "Mine wasted spend and negative keyword candidates from a business's Google Ads search terms (from the RIM Ads Export script, an uploaded Search Terms CSV, or a connected Ads MCP tool), diff against prior runs, and output a Google Ads Editor bulk-import CSV or stage human-approved negatives in Rank-in-Maps. Use when the user asks to \"find wasted ad spend\", \"audit search terms\", \"build negative keywords\", or \"cut Google Ads waste\".\n",
+    "path": "rim-ads-wasted-spend/SKILL.md"
+  },
+  {
     "name": "rim-geogrid-interpretation",
     "description": "Interpret already-collected geo-grid ranking data (ARP/ATRP/SoLV, grid points) from a single supplied context bundle — you do not run scans yourself, RIM supplies stored observations. Use for the dashboard's single-shot External Skills Runner.\n",
     "path": "rim-geogrid-interpretation/SKILL.md"
