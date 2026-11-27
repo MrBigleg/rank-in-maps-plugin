@@ -1,7 +1,7 @@
 {
   "name": "rank-in-maps",
   "version": "0.9.0",
-  "description": "Local SEO for your Google Business Profile, inside your AI: audits, Maps rank grids, review and post drafts you approve, and a Second Brain of business facts. Interactive views in Claude. OAuth; no API keys.",
+  "description": "The local SEO layer for your AI: a Second Brain of your business you own (OKF), an open local SEO knowledge base, live Google data, interactive views, and drafts you approve. MCP and A2A; OAuth, no API keys.",
   "author": {
     "name": "CTB Digital Marketing",
     "url": "https://rank-in-maps.com"
