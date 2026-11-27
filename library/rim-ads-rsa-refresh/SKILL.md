@@ -7,7 +7,7 @@ description: >
   Google Ads Editor bulk-import CSV. Use when the user asks to "rewrite my
   Google Ads", "refresh RSAs", "improve ad strength", or "write new ad copy".
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Google Ads RSA & Asset Bulk Refresh
@@ -52,9 +52,28 @@ headline exceeds 30 characters or any description exceeds 90 characters,
 shorten it before outputting.
 
 ### 4. Output a Google Ads Editor CSV
+A Google Ads Editor import of new headlines and descriptions creates a **new**
+ad; it does not change the ad it replaces. So every refresh is a replacement:
+one row that adds the new ad, and one row that pauses the ad it replaces, so
+the low performer stops serving once the new ad is live.
+
+For each refreshed ad, record the original ad's `Ad ID`, campaign and ad group
+from the script's `ad_urls` table (`ad_id`, `campaign`, `ad_group`) or the
+uploaded RSA CSV before writing any copy. If you cannot identify the original
+ad, say so and output the new ad only, marked for the owner to pause the old
+one by hand; never guess an ID.
+
 Output a ready-to-paste CSV with exact Google Ads Editor headers:
 ```csv
-Campaign,Ad group,Headline 1,Headline 2,...,Headline 15,Description 1,Description 2,Description 3,Description 4,Final URL
+Campaign,Ad group,Ad ID,Status,Headline 1,Headline 2,...,Headline 15,Description 1,Description 2,Description 3,Description 4,Final URL
 ```
+- **New ad row:** `Ad ID` empty, `Status` `Enabled`, the new headlines,
+  descriptions and Final URL.
+- **Original ad row:** the original `Ad ID`, its campaign and ad group,
+  `Status` `Paused`, and the asset and URL columns left empty so nothing else
+  about it changes.
+
+Tell the owner to review both rows in Google Ads Editor before posting, and
+that pausing (not removing) keeps the old ad's history so it can be re-enabled.
 Also note any broken or mismatched landing URLs so the owner can pause or fix
 those pages first.
