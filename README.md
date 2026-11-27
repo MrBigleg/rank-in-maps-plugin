@@ -7,15 +7,41 @@ and prepare drafts for your approval. Keep confirmed facts and findings in an
 Open Knowledge Format (OKF) Business Second Brain so your AI can resume work
 with the business context you have saved.
 
-Download the [v0.9.0 Agent Plugins ZIP](https://github.com/MrBigleg/rank-in-maps-plugin/releases/tag/v0.9.0)
-or follow the install instructions below. Start with **Start with Rank-in-Maps**.
-The package indexes one skill and loads specialist guidance on demand.
-
-**Rank-in-Maps 0.9.0 is published in the OpenAI Plugins Directory.**
-[Open Rank-in-Maps in ChatGPT](https://chatgpt.com/plugins/plugin_asdk_app_6adec0a6be18819192bc2a7f02b81ea9). The GitHub ZIP supports manual
-installation in compatible clients.
+[Install Rank-in-Maps from the OpenAI Plugins Directory](https://chatgpt.com/plugins/plugin_asdk_app_6adec0a6be18819192bc2a7f02b81ea9)
+for the current published version in ChatGPT. For manual installation in a
+compatible client, get the ZIP from the [latest GitHub release](https://github.com/MrBigleg/rank-in-maps-plugin/releases/latest).
+GitHub and the directory publish versions independently.
 
 ## Install
+
+### ChatGPT / Codex
+
+1. [Open Rank-in-Maps in the Plugins Directory](https://chatgpt.com/plugins/plugin_asdk_app_6adec0a6be18819192bc2a7f02b81ea9)
+   and install it.
+2. Follow the connection prompt and sign in to your Rank-in-Maps account in the browser.
+3. Open a new chat and ask **Start with Rank-in-Maps**. The plugin indexes one
+   skill, `rim-start`, and loads specialist guidance on demand.
+
+If the directory install is unavailable in your client, use a single manual MCP
+connection to `https://app.ctbmarketing.com/mcp`. In Codex CLI:
+
+```sh
+codex mcp add rank-in-maps --url https://app.ctbmarketing.com/mcp
+codex mcp login rank-in-maps
+```
+
+Complete browser sign-in, start a new session and ask **Start with Rank-in-Maps**.
+A successful `rim_start_here` call verifies access. If you already installed the
+plugin, use its connection to avoid listing the same tools twice.
+
+For local package testing, clone this repository, open it as your Codex project
+and choose the Rank-in-Maps marketplace in `/plugins`. The repository
+marketplace points to the package in the checkout.
+[Codex plugin packaging guide](https://developers.openai.com/plugins/build/plugins)
+
+For supported built-in browsers, RIM's [AI Connections settings](https://www.rank-in-maps.com/dashboard/settings/ai-connections)
+also link to the signed-in site tools when enabled. Those tools can inspect your
+saved mission without a Chrome extension.
 
 ### Claude Code
 
@@ -87,43 +113,6 @@ No Hermes catalogue listing or authenticated Hermes acceptance is claimed.
 The package deliberately omits `plugin.yaml`: current Hermes gives it priority
 over portable `plugin.json` and then expects Python code. See the
 [Hermes plugin guide](https://hermes-agent.nousresearch.com/docs/developer-guide/plugins).
-
-### ChatGPT / Codex
-
-[Open Rank-in-Maps in the Plugins Directory](https://chatgpt.com/plugins/plugin_asdk_app_6adec0a6be18819192bc2a7f02b81ea9) and follow the connection prompts. For manual MCP setup or local Codex testing:
-
-1. Open `https://www.rank-in-maps.com/dashboard/settings/ai-connections` and
-   sign in. If site tools are enabled and the built-in browser supports them,
-   ask the agent to inspect your saved mission. No extension is needed.
-2. For remote access, add `https://app.ctbmarketing.com/mcp` in your client's
-   custom MCP settings, then complete normal browser OAuth sign-in. In Codex CLI:
-
-   ```sh
-   codex mcp add rank-in-maps --url https://app.ctbmarketing.com/mcp
-   codex mcp login rank-in-maps
-   ```
-
-3. Start a new session if the client needs to refresh its tools, then ask
-   **Start with Rank-in-Maps**. A successful `rim_start_here` call verifies access.
-4. For local plugin testing, clone this repository and open it as your Codex project:
-
-   ```sh
-   git clone https://github.com/MrBigleg/rank-in-maps-plugin.git
-   cd rank-in-maps-plugin
-   codex
-   ```
-
-   Open `/plugins`, choose the Rank-in-Maps repository marketplace, install, and
-   complete sign-in. Start a new session and run setup. In the desktop app, open
-   the checkout as your project and refresh the plugin browser. The checked-in
-   `.agents/plugins/marketplace.json` points at the root package; OpenAI's
-   `onboardingSkill` points at the shipped `rim-start` skill. Availability varies
-   by local client; use the MCP commands above when it is unavailable. Do not use
-   the manual connection and plugin connection together.
-   See the [official packaging guide](https://developers.openai.com/plugins/build/plugins).
-
-Do not add both a manual MCP connection and the plugin's copy of the same server.
-Read [submission readiness](docs/openai-submission.md) before publishing.
 
 ### Agent Plugins 1.0 clients
 
